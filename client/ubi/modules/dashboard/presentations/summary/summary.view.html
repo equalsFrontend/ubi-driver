@@ -1,0 +1,198 @@
+<div class="row placeholders">
+    <div class="col-lg-12 col-md-12 col-xs-12 header-content hidden-xs">
+        <span class="data-logo hidden-xs"></span>
+        <h4>{{::LANG.DAILY_DATA}}</h4>
+        <p ng-if="!noDevice">{{::LANG.DATA_FOR_THE_DAY}} <span class="date-summary">{{LANG.JOUR[endDate.day]}} {{endDate.day}} {{LANG.MOIS[endDate.month - 1]}}</span></p>
+        <span class="clearfix"></span>
+    </div>
+</div>
+
+<div class="row col-lg-12 col-md-12 col-xs-12 data-content">
+    <div class="data-container clearfix">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 placeholder summary_plaque">
+            <h6>{{::LANG.MILEAGE}}</h6>
+            <a ui-sref="dashboard.mileage"><span class="data-image data-km"><img class="img-responsive" src="images/kilometre.png"/></span></a>
+            <span class="description" id="summary_km" ng-if="summaryData.mileage != null && summaryData.mileage != undefined"><span>{{::summaryData.mileage}}</span> km</span>
+            <span class="description" id="summary_km_na" ng-if="summaryData.mileage == null || summaryData.mileage == undefined"><span>N/A</span></span>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 placeholder summary_plaque">
+            <div class="separator-top"></div>
+            <h6>{{::LANG.BRAKING}}</h6>
+            <a ui-sref="dashboard.harshEvents"><span class="data-image data-freinage"><img class="img-responsive" src="images/freinage.png"/></span></a>
+            <span class="description" id="summary_freinage" ng-if="summaryData.harshEvent.braking != null && summaryData.harshEvent.braking != undefined"><span>{{::summaryData.harshEvent.braking}}</span><div></div> {{::LANG.EVENT}}</span>
+            <span class="description" id="summary_freinage_na" ng-if="summaryData.harshEvent.braking == null || summaryData.harshEvent.braking == undefined"><span>N/A</span><div></div></span>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 placeholder summary_plaque">
+            <div class="separator-top"></div>
+            <h6>{{::LANG.ACCELERATION}}</h6>
+            <a ui-sref="dashboard.harshEvents"><span class="data-image data-acceleration"><img class="img-responsive" src="images/acceleration.png"/></span></a>
+            <span class="description" id="summary_acceleration" ng-if="summaryData.harshEvent.acceleration != null && summaryData.harshEvent.acceleration != undefined"><span>{{::summaryData.harshEvent.acceleration}}</span><div></div> {{::LANG.EVENT}}</span>
+            <span class="description" id="summary_acceleration_na" ng-if="summaryData.harshEvent.acceleration == null || summaryData.harshEvent.acceleration == undefined"><span>N/A</span><div></div></span>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 placeholder summary_plaque">
+            <div class="separator-top"></div>
+            <h6>{{::LANG.HOUR_TRAVEL}}</h6>
+            <a ui-sref="dashboard.timeUse"><span class="data-image data-deplacement"><img class="img-responsive" src="images/heure.png"/></span></a>
+            <span class="description"  id="summary_time" ng-if="summaryData.timeOfUse != null && summaryData.timeOfUse != undefined"><span>{{::LANG[summaryData.timeOfUse.name.toUpperCase()]}}</span><div></div>{{::summaryData.timeOfUse.value}}%</span>
+            <span class="description"  id="summary_time_na" ng-if="summaryData.timeOfUse == null || summaryData.timeOfUse == undefined"><span>N/A</span><div></div></span>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 placeholder summary_plaque">
+            <div class="separator-top"></div>
+            <h6>{{::LANG.ROAD_TYPE}}</h6>
+            <a ui-sref="dashboard.typeRoad"><span class="data-image data-route"><img class="img-responsive" src="images/type.png"/></span></a>
+            <span class="description" id="summary_route" ng-if="summaryData.roadTypeUsage != null && summaryData.roadTypeUsage != undefined"><span>{{::LANG[summaryData.roadTypeUsage.name.toUpperCase()]}}</span><div></div>{{::summaryData.roadTypeUsage.value}}%</span>
+            <span class="description" id="summary_route_na" ng-if="summaryData.roadTypeUsage == null || summaryData.roadTypeUsage == undefined"><span>N/A</span><div></div></span>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 placeholder summary_plaque">
+            <div class="separator-top"></div>
+            <h6>{{::LANG.MENU_SPEED}}</h6>
+            <a ui-sref="dashboard.speed"><span class="data-image data-vitesse"><img class="img-responsive" src="images/vitesse.png"/></span></a>
+            <span class="description" id="summary_vitesse" ng-if="summaryData.averageSpeed != null && summaryData.averageSpeed != undefined"><span>{{::summaryData.averageSpeed}}</span> km/h<div></div> {{::LANG.AVERAGE}}</span>
+            <span class="description" id="summary_vitesse_na" ng-if="summaryData.averageSpeed == null || summaryData.averageSpeed == undefined"><span>N/A</span><div></div></span>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 placeholder summary_plaque">
+            <div class="separator-top"></div>
+            <h6>{{::LANG.CO2_EMISSIONS}}</h6>
+            <a ui-sref="dashboard.co2"><span class="data-image data-co2"><img class="img-responsive" src="images/co2.png"/></span></a>
+            <span class="description" id="summary_co2" ng-if="summaryData.co2 != null && summaryData.co2 != undefined"><span>{{::summaryData.co2}}</span> g/km</span>
+            <span class="description" id="summary_co2_na" ng-if="summaryData.co2 == null || summaryData.co2 == undefined"><span>N/A</span></span>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 placeholder summary_plaque" style="border-bottom: none !important;">
+            <div class="separator-top"></div>
+            <h6>{{::LANG.DRIVING_ZONE}}</h6>
+            <a ui-sref="dashboard.drivingLocation"><span class="data-image data-rurale"><img class="img-responsive" src="images/rurale.png"/></span></a>
+            <span class="description" id="summary_trajet" ng-if="summaryData.drivingLocationUsage != null && summaryData.drivingLocationUsage != undefined"><span>{{::LANG[summaryData.drivingLocationUsage.name.toUpperCase()]}}</span><div></div> {{::summaryData.drivingLocationUsage.value}}%</span>
+            <span class="description" id="summary_trajet_na" ng-if="summaryData.drivingLocationUsage == null || summaryData.drivingLocationUsage == undefined"><span>N/A</span><div></div></span>
+        </div>
+    </div>
+</div>
+
+<div class="row placeholders">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-xs header-content">
+        <span class="notation-logo hidden-xs"></span>
+        <h4>{{::LANG.ANNUAL_RATING}}</h4>
+        <p ng-if="!noDevice"><span class="date-summary">{{LANG.JOUR[endDate.day]}} {{endDate.day}} {{LANG.MOIS[endDate.month -1 ]}}</span></p>
+        <span class="clearfix"></span>
+    </div>
+</div>
+
+<div class="row data-notation">
+    <div class="notation-container clearfix">
+        <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12 clearfix notation-sub-container">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-sm hidden-md hidden-lg header-content">
+                <h4 style="padding-left: 0px !important;">{{::LANG.ANNUAL_RATING}}</h4>
+                <p><span class="date-summary">{{LANG.JOUR[endDate.day]}} {{endDate.day}} {{LANG.MOIS[endDate.month - 1]}}</span></p>
+                <span class="clearfix"></span>
+            </div>
+            <div id="close-content" class="open clearfix">
+                <div class="note {{cleanGrade(LANG.GRADE[summaryData.gradeByCriteria.GLOBAL || '0']).toLowerCase()}}" id="summary_note_globale">{{LANG.GRADE[summaryData.gradeByCriteria.GLOBAL || '0']}}</div>
+                <div class="legend">
+                    <h6>{{::LANG.LEGEND}} :</h6>
+                    <div class="entry a">{{::LANG.NOTE_A}}</div>
+                    <div class="entry b">{{::LANG.NOTE_B}}</div>
+                    <div class="entry c">{{::LANG.NOTE_C}}</div>
+                    <div class="entry d">{{::LANG.NOTE_D}}</div>
+                </div>
+            </div>
+            <div class="button button-close">{{::LANG.CLOSE}}<span class="arrow-up"></span></div>
+            <div class="button button-open"><{{::LANG.OPEN}}<span class="arrow-down"></span></div>
+        </div>
+        <div class="content-button">
+            <div class="separator"></div>
+            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12 note-resume">
+                <h4 style="padding-left: 0px !important;">{{::LANG.ANNUAL_RATING_CRITERIA}}</h4>
+                <p><span class="date-summary">{{LANG.JOUR[endDate.day]}} {{endDate.day}} {{LANG.MOIS[endDate.month - 1]}}</span></p>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 placeholder">
+                    <h6>{{::LANG.MENU_MILEAGE}}</h6>
+                    <div class="note {{cleanGrade(LANG.GRADE[summaryData.gradeByCriteria.MILEAGE || '0']).toLowerCase()}}" id="summary_note_km">{{LANG.GRADE[summaryData.gradeByCriteria.MILEAGE || '0']}}</div>
+                    <span class="description" ng-click="changeRange('since_forever', 10)"><a ui-sref="dashboard.mileage">{{::LANG.MORE}}</a></span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 placeholder">
+                    <div class="separator-top"></div>
+                    <h6>{{::LANG.ACCELERATION}}</h6>
+                    <div class="note {{cleanGrade(LANG.GRADE[summaryData.gradeByCriteria.ACCELERATION || '0']).toLowerCase()}}" id="summary_note_acceleration">{{LANG.GRADE[summaryData.gradeByCriteria.ACCELERATION || '0']}}</div>
+                    <span class="description" ng-click="changeRange('since_forever', 10)"><a ui-sref="dashboard.harshEvents">{{::LANG.MORE}}</a></span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 placeholder">
+                    <div class="separator-top"></div>
+                    <h6>{{::LANG.BRAKING}}</h6>
+                    <div class="note {{cleanGrade(LANG.GRADE[summaryData.gradeByCriteria.BRAKING || '0']).toLowerCase()}}" id="summary_note_braking">{{LANG.GRADE[summaryData.gradeByCriteria.BRAKING || '0']}}</div>
+                    <span class="description" ng-click="changeRange('since_forever', 10)"><a ui-sref="dashboard.harshEvents">{{::LANG.MORE}}</a></span>
+                </div>
+            </div>
+            <div class="separator hidden-xs"></div>
+            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12 note-resume">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 placeholder">
+                    <div class="separator-top"></div>
+                    <h6>{{::LANG.MENU_TIMEUSE}}</h6>
+                    <div class="note {{cleanGrade(LANG.GRADE[summaryData.gradeByCriteria.TIME_OF_USE || '0']).toLowerCase()}}" id="summary_note_deplacement">{{LANG.GRADE[summaryData.gradeByCriteria.TIME_OF_USE || '0']}}</div>
+                    <span class="description" ng-click="changeRange('since_forever', 10)"><a ui-sref="dashboard.timeUse">{{::LANG.MORE}}</a></span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 placeholder">
+                    <div class="separator-top"></div>
+                    <h6>{{::LANG.MENU_TYPEROAD}}</h6>
+                    <div class="note {{cleanGrade(LANG.GRADE[summaryData.gradeByCriteria.ROAD_TYPE || '0']).toLowerCase()}}" id="summary_note_route">{{LANG.GRADE[summaryData.gradeByCriteria.ROAD_TYPE || '0']}}</div>
+                    <span class="description" ng-click="changeRange('since_forever', 10)"><a ui-sref="dashboard.typeRoad">{{::LANG.MORE}}</a></span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 placeholder" style="display:none !important;">
+                    <div class="separator-top"></div>
+                    <h6>{{::LANG.MENU_SPEED}}</h6>
+                    <div class="note c" id="summary_note_vitesse">C</div>
+                    <span class="description" ng-click="changeRange('since_forever', 10)"><a ui-sref="dashboard.speed">{{::LANG.MORE}}</a></span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 placeholder">
+                    <div class="separator-top"></div>
+                    <h6>{{::LANG.MENU_CO2}}</h6>
+                    <div class="note {{cleanGrade(LANG.GRADE[summaryData.gradeByCriteria.CO2 || '0']).toLowerCase()}}" id="summary_note_co2">{{LANG.GRADE[summaryData.gradeByCriteria.CO2 || '0']}}</div>
+                    <span class="description" ng-click="changeRange('since_forever', 10)"><a ui-sref="dashboard.co2">{{::LANG.MORE}}</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-if="carouselData[0]">
+    <div class="row placeholders hidden-xs">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-content historique">
+            <span class="historique-logo "></span>
+            <h4>{{::LANG.HISTORY_DAILY_RATINGS}}</h4>
+            <span class="clearfix"></span>
+        </div>
+    </div>
+
+    <div class="row data-historique">
+        <div class="historique-container clearfix">
+            <div class="col-sm-12 col-xs-12 col-xs-10 header-content hidden-sm hidden-md hidden-lg">
+                <span class="historique-logo hidden-xs"></span>
+                <h4>{{::LANG.HISTORY_DAILY_RATINGS}}</h4>
+                <span class="clearfix"></span>
+            </div>
+            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+                <div class="year">{{carouselYear}}</div>
+                <div class="month">{{carouselMonth}}<span class="arrow"></span></div>
+
+                <span class="prev" ng-click="scrollCarouselLeft($event)"></span>
+                <ul class="timeline clearfix" id="summary_ul">
+                    <li ng-repeat="event in carouselData" class="{{::event.gradeClass}}" data-year="{{::event.year}}" data-position="{{::event.position}}" data-month="{{::event.month}}">
+                        <div class="day">{{event.day}} {{::event.dayNum}}</div>
+                        <div class="color"></div>
+                        <div class="note">{{event.grade}}</div>
+                    </li>
+                </ul>
+                <span class="next" ng-click="scrollCarouselRight($event)"></span>
+                <span class="line"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row last-row">
+    <span class="clearfix">
+        <div class="next">
+            <a ui-sref="dashboard.mileage" ng-click="scrollTo();">
+                <span class="text">{{::LANG.NEXT}}</span>
+                <span class="name-page">{{::LANG.MENU_MILEAGE}}</span>
+                <span class="arrow-next"><img src="images/arrow-next.png"/></span>
+            </a>
+        </div>
+    </span>
+</div>

@@ -1,0 +1,120 @@
+<debug ng-if="debug"></debug>
+
+<ubi-header ng-if="isMobile" class="mobile-header"></ubi-header>
+
+<div class="vertical-bar" ng-class="{'active': menuVisible}" ng-controller="DashboardMenuController as menu">
+    <div class="container-logo">
+        <div class="logo"><a><img class="img-responsive" src="images/logo.svg"/></a></div>
+    </div>
+    <div class="container-user">
+        <div class="mail-user" ng-click="toggleUserPopup()">{{username}}<span class="arrow-down"></span></div>
+        <div class="popup-user">
+            <div><a ng-click="menuToggleHandler(); scrollTo();" ui-sref="dashboard.profile">{{::LANG.MENU_PROFILE}}</a></div>
+            <div><a ng-click="logoutHandler()" class="sign-out">{{::LANG.SIGN_OUT}}<span><img src="images/deconnexion.png"/></span></a></div>
+        </div>
+    </div>
+    <div class="nav-container">
+        <h4 ng-class="{'current': ($state.current.name.indexOf('faq') < 0) && ($state.current.name.indexOf('info') < 0) && ($state.current.name.indexOf('profile') < 0) && ($state.current.name.indexOf('tips') < 0)}"><a>{{::LANG.DASHBOARD}}</a></h4>
+        <ul class="nav nav-sidebar">
+            <li ng-repeat="l in links" ng-class="{'current': $state.includes('dashboard.' + l)}">
+                <a ng-click="menuToggleHandler(); scrollTo();" ui-sref="dashboard.{{l}}">{{::LANG['MENU_'+l.toUpperCase()]}}</a>
+            </li>
+        </ul>
+        <h4 ng-class="{'current': $state.includes('dashboard.history')}"><a ng-click="menuToggleHandler(); scrollTos();" ui-sref="dashboard.history" ng-click="closePopup()">{{::LANG.MENU_HISTORY}}</a></h4>
+        <h4 ng-class="{'current': $state.includes('dashboard.info')}"><a ng-click="menuToggleHandler(); scrollTos();" ui-sref="dashboard.info">{{::LANG.MENU_INFO}}</a></h4>
+        <h4><a href="{{PATHS.MICROSITE}}forum" target="_blank">Forum</a></h4>
+    </div>
+    <div class="langue-container">
+        <ul>
+            <!--<li><span ng-click="selectLangHandler(LANG.en)">{{::LANG.en.toUpperCase()}}</span></li>-->
+            <!--<li><span ng-click="selectLangHandler(LANG.fr)">{{::LANG.fr.toUpperCase()}}</span></li>-->
+        </ul>
+    </div>
+</div>
+<div class="main col-lg-12 col-md-12 col-xs-12" id="{{$state.current.name.replace('.', '-')}}" ng-class="{'active': menuVisible}">
+
+    <ubi-header ng-if="!isMobile" ></ubi-header>
+
+    <div class="presentation">
+        <div class="row first-row no-device-warning" ng-if="noDevice"><b>{{::LANG.NO_DATA.DATA}}</b><br/>{{::LANG.NO_DATA.SMARTPHONE}}</div>
+        <div class="row first-row no-data-warning" ng-if="noData">{{::LANG.NO_DATA.DATA}}</div>
+        <div id='pickers-container' class="row first-row" ng-if="debug
+                                          || !noDevice
+                                             && !noData
+                                             && ($state.current.name.indexOf('faq') < 0)
+                                             && ($state.current.name.indexOf('info') < 0)
+                                             && ($state.current.name.indexOf('profile') < 0)
+                                             && ($state.current.name.indexOf('tips') < 0)">
+            <div class="pickers ">
+                <div class="btn-group vehicle-picker hidden-xs">
+                    <button type="button" class="btn btn-default" dropdown="car-dropdown,active" >{{currentMachine.title}}</button>
+                    <button type="button" class="btn btn-default dropdown-toggle" dropdown="car-dropdown,active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" id="car-dropdown">
+                        <li ng-repeat="sp in machines" ng-if="sp.type == 'SMARTPHONE' && debug == true"><a ng-click="changeMachine($event)" data-machine="{{sp}}">{{::sp.title}}</a></li>
+                        <li ng-repeat="sp in machines" ng-if="sp.type == 'VEHICLE'"><a ng-click="changeMachine($event)" data-machine="{{sp}}">{{::sp.title}}</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group day" ng-if="($state.current.name.indexOf('summary')) < 0 && ($state.current.name != 'dashboard') && ($state.current.name.indexOf('history') < 0)">
+                    <button id="current-range-text" type="button" class="btn btn-default" dropdown="range-dropdown,active" >{{::LANG[currentRange.toUpperCase()]}}</button>
+                    <button type="button" class="btn btn-default dropdown-toggle" dropdown="range-dropdown,active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" id="range-dropdown">
+                        <li ng-class="{'disabled' : !checkRange('since_forever')}"><a ng-click="changeRange('since_forever', false, $event)">{{::LANG.SINCE_FOREVER}}</a></li>
+                        <li ng-class="{'disabled' : !checkRange('this_week')}"><a ng-click="changeRange('this_week', false, $event)">{{::LANG.THIS_WEEK}}</a></li>
+                        <li ng-class="{'disabled' : !checkRange('this_month')}"><a ng-click="changeRange('this_month', false, $event)">{{::LANG.THIS_MONTH}}</a></li>
+                        <li ng-class="{'disabled' : !checkRange('this_quarter')}"><a ng-click="changeRange('this_quarter', false, $event)">{{::LANG.THIS_QUARTER}}</a></li>
+                        <li ng-class="{'disabled' : !checkRange('this_year')}"><a ng-click="changeRange('this_year', false, $event)">{{::LANG.THIS_YEAR}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div  class="date-picker" ng-class="{range : isSummaryPage()}" id="date-time-picker" ng-if="$state.current.name.indexOf('history') < 0">
+
+                <div class="input-group-addon sum start-date">
+                    <span id="date-day">{{startDate.day}}</span><br/>
+                    <span id="date-month">{{LANG.MOIS_MINI[startDate.month - 1]}}</span>
+                </div>
+                <div class="date-to">
+                    <p>{{::LANG.TO}}</p>
+                </div>
+                <div class="input-group-addon sum end-date">
+                    <span id="date-day">{{endDate.day}}</span><br/>
+                    <span id="date-month">{{LANG.MOIS_MINI[endDate.month - 1]}}</span>
+                </div>
+            </div>
+            <div class="select-pager" id="selecter-page" ng-if="$state.current.name.indexOf('harshEvent') > -1">
+                <ul>
+                    <li class="active" data-open="page1" id="p1" ng-click="showPage('1')">
+                        <img src="images/page1.png">
+                        <img src="images/page1-active.png">
+                    </li>
+                    <li data-open="page2" id="p2" class="" ng-click="showPage('2', true)">
+                        <img src="images/page2.png">
+                        <img src="images/page2-active.png">
+                    </li>
+                    <li data-open="page3" id="p3" class="" ng-click="showPage('3', true)">
+                        <img src="images/page3.png">
+                        <img src="images/page3-active.png">
+                    </li>
+                </ul>
+                <span class="clearfix"></span>
+            </div>
+        </div>
+
+        <div ui-view="dashboardModule" class="dashboard-module" ng-if="(!noData && !noDevice) || $state.current.name.indexOf('summary') > -1 || $state.current.name.indexOf('profile') > -1 || $state.current.name.indexOf('info') > -1"></div>
+        <no-data-instruction class="dashboard-module no-data-module" ng-if="(noData || noDevice) && $state.current.name.indexOf('summary') < 0 && $state.current.name.indexOf('profile') < 0 && $state.current.name.indexOf('info') < 0"></no-data-instruction>
+
+        <div class="copyright" ng-hide="$state.current.name == 'dashboard'">
+            2015, iMetrik Global Inc., All right Reserved.
+        </div>
+    </div>
+</div>
+
+<popup></popup>
+
+<div class="col-md-12 col-sm-12 col-xs-12 overlay" ng-class="{'active': menuVisible}" ng-click="menuToggleHandler()"></div>

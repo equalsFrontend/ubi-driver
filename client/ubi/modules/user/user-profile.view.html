@@ -1,0 +1,317 @@
+<div class="profile">
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            <div class="header-content hidden-xs">
+                <h4>{{::LANG.PERSONAL_INFORMATION}}</h4>
+            </div>
+            <div class="col-md-12 col-xs-12">
+                <div class="data-content">
+                    <div class="header-content col-xs-12 hidden-sm hidden-lg hidden-md">
+                        <h4>{{::LANG.PERSONAL_INFORMATION}}</h4>
+                    </div>
+                    <div>
+                        <form class="profil-form" method="POST" name="profileForm">
+                            <div class="prenom input">
+                                <md-input-container flex id="firstName" md-theme-watch="true">
+                                    <label>{{::LANG.FIRST_NAME}}</label>
+                                    <input type="text" ng-model="participant.user.firstName" name="firstName" disabled required/>
+                                    <div ng-messages="profileForm.firstName.$touched && profileForm.firstName.$error" role="alert">
+                                        <div ng-message="required">
+                                            Veuillez renseigner votre prénom.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="nom input">
+                                <md-input-container flex id="lastName" md-theme-watch="true">
+                                    <label>{{::LANG.LAST_NAME}}</label>
+                                    <input type="text" ng-model="participant.user.lastName" name="lastName" disabled required/>
+                                    <div ng-messages="profileForm.lastName.$touched && profileForm.lastName.$error" role="alert">
+                                        <div ng-message="required">
+                                            Veuillez renseigner votre nom.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div class="mail input">
+                                <md-input-container flex id="email" md-theme-watch="true">
+                                    <label>{{::LANG.MAIL}} {{profileForm.email.$error.required ? "(" + LANG.REQUIRED + ")" : ""}}</label>
+                                    <input type="text" ng-model="participant.user.email" name="email" disabled required/>
+                                    <div ng-messages="profileForm.email.$touched && profileForm.email.$error" role="alert">
+                                        <div ng-message="required">
+                                            Veuillez renseigner votre email.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <!--<div class="naissance input">-->
+                                <!--<label>{{::LANG.BIRTHDAY}}</label> <br/>-->
+                                <!--<md-datepicker ng-model="user.birthDate" md-placeholder="{{::LANG.BIRTHDAY}}"></md-datepicker>-->
+                            <!--</div>-->
+                            <div class="telephone1 input">
+                                <md-input-container flex id="phone" md-theme-watch="true">
+                                    <label>{{::LANG.PHONE}}</label>
+                                    <input type="text" ng-model="participant.user.homePhoneNumber" name="homePhoneNumber" disabled/>
+                                </md-input-container>
+                            </div>
+                            <!--<div class="telephone2 input">  -->
+                                <!--<md-input-container flex id="cellPhoneNumber" md-theme-watch="true">-->
+                                    <!--<label>{{::LANG.MOBILEPHONE}}</label>-->
+                                    <!--<input type="text" ng-model="user.cellPhoneNumber" name="cellPhoneNumber" disabled/>-->
+                                <!--</md-input-container>-->
+                            <!--</div>-->
+                            <div class="username input">
+                                <md-input-container flex id="username" md-theme-watch="true">
+                                    <label>{{::LANG.USER_NAME}}</label>
+                                    <input type="text" ng-model="participant.user.username" name="username" disabled disabled-hard/>
+                                </md-input-container>
+                            </div>
+                            <div class="assureur input">
+                                <md-input-container flex id="email" md-theme-watch="true">
+                                    <label>{{::LANG.INSURER}}</label>
+                                    <input type="text" ng-model="participant.externalIdentifier" name="insuredId" disabled disabled-hard/>
+                                </md-input-container>
+                            </div>
+                            <!--<div class="langue input">-->
+                                <!--<label>{{::LANG.LANGUAGE_WORD}}</label>-->
+                                <!--<md-input-container flex id="email" md-theme-watch="true">-->
+                                    <!--<md-select name="language" ng-model="user.language" placeholder="{{LANG.LANG[user.language]}}" aria-label="language">-->
+                                        <!--<md-option value="fr">{{::LANG.FRENCH}}</md-option>-->
+                                        <!--<md-option value="en">{{::LANG.ENGLISH}}</md-option>-->
+                                    <!--</md-select>-->
+                                <!--</md-input-container>-->
+                            <!--</div>-->
+
+                            <div>
+                                <input id="update-profil" type="submit" value="{{::LANG.UPDATE}}" ng-click="enableForm('profil')"/>
+                                <input id="cancel-profil" type="submit" value="{{::LANG.CANCEL}}" ng-click="disableForm('profil', true)"/>
+                                <input id="submit-profil" name="submit-adresses" type="submit" value="{{::LANG.VALIDATE}}" ng-click="saveProfileForm()"/>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xs-12">
+            <div class="header-content hidden-xs">
+                <h4>{{::LANG.CONTACT_INFORMATION}}</h4>
+            </div>
+            <div class="col-md-12 col-xs-12">
+                <div class="data-content content-right">
+                    <div class="header-content col-xs-12 hidden-sm hidden-lg hidden-md">
+                        <h4>{{::LANG.CONTACT_INFORMATION}}</h4>
+                    </div>
+
+                    <form class="adresse-form" name="addressForm">
+                        <input type="hidden" value="<?php print $address->id; ?>" name="id"/>
+                        <!--<div class="libelle input">-->
+                            <!--<md-input-container flex id="label" md-theme-watch="true">-->
+                                <!--<label>{{::LANG.LABEL}}</label>-->
+                                <!--<input type="text" ng-model="addresses[0].name" disabled/>-->
+                            <!--</md-input-container>-->
+                        <!--</div>-->
+                        <div class="line1 input">
+                            <md-input-container flex id="streetNumber" md-theme-watch="true">
+                                <label>{{::LANG.NAME_NUMBER_STREET}}</label>
+                                <input type="text" ng-model="addresses[0].line1" name="line1" disabled required/>
+                                <div ng-messages="addressForm.line1.$error" role="alert">
+                                    <div ng-message="required">
+                                        Veuillez renseigner votre nom et numéro de rue.
+                                    </div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <div class="line2 input">
+                            <md-input-container flex id="line2" md-theme-watch="true">
+                                <label>{{::LANG.ADDRESS_LINE}}</label>
+                                <input type="text" ng-model="addresses[0].line2" name="line2" disabled/>
+                            </md-input-container>
+                        </div>
+                        <div class="postalCode input">
+                            <md-input-container flex id="postalCode" md-theme-watch="true">
+                                <label>{{::LANG.POSTAL_CODE}}</label>
+                                <input type="text" ng-model="addresses[0].postalCode" name="postalCode" disabled required/>
+                                <div ng-messages="addressForm.postalCode.$error" role="alert">
+                                    <div ng-message="required">
+                                        Veuillez renseigner votre code postal.
+                                    </div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <div class="city input">
+                            <md-input-container flex id="city" md-theme-watch="true">
+                                <label>{{::LANG.CITY}}</label>
+                                <input type="text" ng-model="addresses[0].city" name="city" disabled required/>
+                                <div ng-messages="addressForm.city.$error" role="alert">
+                                    <div ng-message="required">
+                                        Veuillez renseigner votre ville.
+                                    </div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <!--<div class="province input">-->
+                            <!--<md-input-container flex id="province" md-theme-watch="true">-->
+                                <!--<label>{{::LANG.PROVINCE}}</label>-->
+                                <!--<input type="text" ng-model="addresses[0].province" disabled/>-->
+                            <!--</md-input-container>-->
+                        <!--</div>-->
+                        <!--<div class="country input">-->
+                            <!--<md-input-container flex id="country" md-theme-watch="true">-->
+                                <!--<label>{{::LANG.COUNTRY}}</label>-->
+                                <!--<input type="text" ng-model="addresses[0].country" disabled/>-->
+                            <!--</md-input-container>-->
+                        <!--</div>-->
+
+                        <div>
+                            <input id="update-adresse" type="submit" value="{{::LANG.UPDATE}}" ng-click="enableForm('adresse')"/>
+                            <input id="cancel-adresse" type="submit" value="{{::LANG.CANCEL}}" ng-click="disableForm('adresse', true)"/>
+                            <input id="submit-adresse" name="submit-adresses" type="submit" value="{{::LANG.VALIDATE}}" ng-click="saveAddressForm()"/>
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row placeholders hidden-xs">
+        <div class="col-lg-12 col-md-12 col-sm-12 header-content">
+            <h4>{{::LANG.CARS_BOXES}}</h4>
+            <span class="clearfix"></span>
+        </div>
+    </div>
+
+    <!--<?php foreach ($cars as $key => $car): ?>-->
+    <div class="row data-vehicule" ng-repeat="machine in vehicles">
+        <div class="vehicule-container clearfix <?php print 'car-'.$key; ?>">
+            <!--<?php if ($key == 0): ?>-->
+            <div class="col-sm-12 col-xs-12 col-xs-10 header-content hidden-md hidden-lg hidden-sm">
+                <h4>{{::LANG.CARS_BOXES}}</h4>
+                <span class="clearfix"></span>
+            </div>
+            <!--<?php endif; ?>-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix notation-sub-vehicule">
+                <div class="vehicule">
+                    <div class="logo-vehicule">
+                        <img class="img-responsive" ng-src="{{machine.vehicle.color ? 'images/car_' + machine.vehicle.color.toLowerCase() + '.png' : 'images/car_blue.png'}}"/>
+                    </div>
+                    <div class="description-vehicule">
+                        <h6 style="margin-right: 10px;">{{machine.vehicle.brand}} {{machine.vehicle.model}}</h6>
+                        <h5>
+                            <div class="content active car-name-{{$index}}">{{machine.vehicle.name}}</div>
+                            <div class="nickname car-nickname-{{$index}}">
+                                <form method="POST">
+                                    <input type="hidden" value="{{machine.vehicle.id}}" name="id"/>
+                                    <input type="hidden" value="{{machine.vehicle.description}}" name="description"/>
+                                    <input type="hidden" value="{{machine.vehicle.year}}" name="year"/>
+                                    <input type="hidden" value="{{machine.vehicle.brand}}" name="brand"/>
+                                    <input type="hidden" value="{{machine.vehicle.model}}" name="model"/>
+                                    <input type="hidden" value="{{machine.vehicle.mileage}}" name="mileage"/>
+                                    <input type="hidden" value="{{machine.vehicle.doors}}" name="doors"/>
+                                    <input type="hidden" value="{{machine.vehicle.color}}" name="color"/>
+                                    <input type="hidden" value="{{machine.vehicle.fuelType}}" name="fuelType"/>
+                                    <input type="hidden" value="{{machine.vehicle.steerWheelSide}}" name="steerWheelSide"/>
+                                    <input type="hidden" value="{{machine.vehicle.engineSize}}" name="engineSize"/>
+                                    <input type="hidden" value="{{machine.vehicle.genre}}" name="genre"/>
+                                    <input type="hidden" value="{{machine.vehicle.pictureURL}}" name="pictureURL"/>
+                                    <input type="hidden" value="{{machine.vehicle.gearbox}}" name="gearbox"/>
+                                    <input type="hidden" value="{{machine.vehicle.vin}}" name="vin"/>
+
+                                    <md-input-container flex id="name" md-theme-watch="true" style="margin-top: 0px;">
+                                        <input type="text" ng-model="machine.vehicle.name" aria-label="machineName" style="margin-top: -10px; padding-bottom: 16px;"/>
+                                    </md-input-container>
+                                    <br/>
+                                    <input class="submit-car" name="submit-car" type="submit" value="{{::LANG.VALIDATE}}" ng-click="saveVehicleName(machine.vehicle, $index)" />
+                                    <button class="cancel-car" ng-click="toggleNicknameField($index, true)">{{::LANG.CANCEL}}</button>
+                                </form>
+                            </div>
+
+                            <span><img ng-click="toggleNicknameField($index)" src="images/crayon.png"/></span>
+                        </h5>
+
+                        <div class="description-transmission">
+                            <div><span>{{::LANG.MACHINE_IDENTIFIER}} :</span> {{machine.machineIdentifier}}</div>
+                        </div>
+
+                        <div class="attributs-vehicule">
+                            <div class="attribut-vehicule">
+                                <span class="attribut-vehicule-logo"><img src="images/vehicule-route.png"/></span>
+                                {{machine.vehicle.mileage}} km
+                            </div>
+                            <div class="attribut-vehicule">
+                                <span class="attribut-vehicule-logo"><img src="images/vehicule-porte.png"/></span>
+                                {{machine.vehicle.doors}}
+                            </div>
+                            <div class="attribut-vehicule">
+                                <span class="attribut-vehicule-logo"><img src="images/vehicule-essence.png"/></span>
+                                {{machine.vehicle.fuelType}}
+                            </div>
+                            <div class="attribut-vehicule">
+                                <span class="attribut-vehicule-logo"><img src="images/vehicule-volant.png"/></span>
+                                {{machine.vehicle.steerWheelSide}}
+                            </div>
+                            <div class="attribut-vehicule">
+                                <span class="attribut-vehicule-logo"><img src="images/vehicule-couleur.png"/></span>
+                                {{machine.vehicle.color}}
+                            </div>
+                            <div class="attribut-vehicule">
+                                <span class="attribut-vehicule-logo"><img src="images/vehicule-vitesse.png"/></span>
+                                {{machine.vehicle.gearbox}}
+                            </div>
+                            <div class="attribut-vehicule">
+                                <span class="attribut-vehicule-logo"><img src="images/vehicule-consomation.png"/></span>
+                                XXXXXXXX
+                            </div>
+                            <div class="attribut-vehicule">
+                                <span class="attribut-vehicule-logo"><img src="images/vehicule-type.png"/></span>
+                                {{machine.vehicle.genre}}
+                            </div>
+                            <span class="clearfix"></span>
+                        </div>
+                    </div>
+                    <span class="clearfix"></span>
+                </div>
+                <div class="transmission">
+                    <div class="logo-imetrik">
+                        <img class="img-responsive" src="images/vehicule-logo.png"/>
+                    </div>
+
+
+                    <div class="description-transmission">
+                        <div><span>{{::LANG.LAST_TRANSMISSION}} :</span> {{machine.lastConnectionTs}}</div>
+                        <div><span>{{::LANG.FIRST_TRANSMISSION}} :</span> {{machine.firstConnectionTs}}</div>
+                        <div><span>{{::LANG.SERIAL_NUMBER}} :</span> {{machine.deviceSerialNumber}}</div>
+                    </div>
+                    <span class="clearfix"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<?php endforeach; ?>-->
+</div>
+
+<div class="row last-row">
+    <span class="clearfix">
+        <div class="previous hidden-xs">
+            <a ui-sref="dashboard.info" ng-click="scrollTo();">
+                <span class="text">{{::LANG.PREVIOUS}}</span>
+                <span class="name-page">{{::LANG.MENU_INFO}}</span>
+                <span class="arrow-prev"><img src="images/arrow-prev.png"/></span>
+            </a>
+        </div>
+        <div class="previous-light hidden-sm hidden-md hidden-lg">
+            <a ui-sref="dashboard.harshEvents" ng-click="scrollTo();">
+                <span class="arrow-prev"><img src="images/arrow-prev.png"/></span>
+            </a>
+        </div>
+        <div class="next">
+            <a ui-sref="dashboard.summary" ng-click="scrollTo();">
+                <span class="text">{{::LANG.NEXT}}</span>
+                <span class="name-page">{{::LANG.MENU_SUMMARY}}</span>
+                <span class="arrow-next"><img src="images/arrow-next.png"/></span>
+            </a>
+        </div>
+    </span>
+</div>

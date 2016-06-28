@@ -1,0 +1,132 @@
+<div class="row placeholders">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-xs header-content">
+        <span class="notation-logo hidden-xs"></span>
+        <h4 class="title">{{::LANG.NOTE_SELECTED_PERIOD}}</h4>
+        <span class="clearfix"></span>
+    </div>
+</div>
+
+<div class="row data-notation">
+    <div class="notation-container clearfix">
+        <div class="col-sm-12 col-xs-12 col-xs-10 header-content hidden-md hidden-lg hidden-sm">
+            <h4 class="title">{{::LANG.NOTE_SELECTED_PERIOD}}</h4>
+            <span class="clearfix"></span>
+        </div>
+        <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10 clearfix notation-sub-container">
+            <div class="content-button">
+                <div class="open clearfix">
+                    <div class="row">
+                        <div class="container-center">
+                            <div class="double-note">
+                                <div class="container-logo-note center">
+                                    <h5>{{::LANG.MENU_CO2}}</h5>
+                                    <div class="note {{cleanGrade(LANG.GRADE[co2Data.summary.grade || '0']).toLowerCase()}}" id="co2_note1">{{LANG.GRADE[co2Data.summary.grade || 'N/A']}}</div>
+                                    <div class="kilo"><div id="avg_100k_co2" class="small">{{checkAvailable(co2Data.summary.amountPerKM, 'N/A')}}</div> <span>{{LANG.EMISSION_NUMBER}} <span class="highlite">km</span></span></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="legend">
+                            <h6>{{::LANG.LEGEND}} :</h6>
+                            <div class="entry a">{{::LANG.NOTE_A}}</div>
+                            <div class="entry b">{{::LANG.NOTE_B}}</div>
+                            <div class="entry c">{{::LANG.NOTE_C}}</div>
+                            <div class="entry d">{{::LANG.NOTE_D}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button button-close hidden-lg hidden-md hidden-sm">{{::LANG.CLOSE}}<span class="arrow-up"></span></div>
+            <div class="button button-open hidden-lg hidden-md hidden-sm">{{::LANG.OPEN}}<span class="arrow-down"></span></div>
+        </div>
+    </div>
+</div>
+
+<div class="row placeholders hidden-xs">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-content">
+        <span class="co2-logo"><img class="img-responsive" src="images/co2.png"/></span>
+        <h4 class="co2">{{::LANG.MY_DATA}}</h4>
+        <span class="clearfix"></span>
+    </div>
+</div>
+
+<div class="row data-co2 data-content">
+    <div class="co2-container data-container clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-content hidden-sm hidden-lg hidden-md">
+            <h4>{{::LANG.MY_DATA}}</h4>
+            <span class="clearfix"></span>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 chart-section">
+            <h5 class="col-md-offset-1" style="text-align: left;">{{::LANG.EMISSION_NUMBER}}</h5>
+            <div class="row">
+                <div class="col-md-offset-1 granularity">
+                    <div class="btn-group day">
+                        <button type="button" class="btn btn-default" dropdown="gran-dropdown,active" >{{LANG[co2DataGranularity]}}</button>
+                        <button type="button" class="btn btn-default dropdown-toggle" dropdown="gran-dropdown,active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" id="gran-dropdown">
+                            <li><a ng-click="getCo2Data('DAY')">{{::LANG.DAY}}</a></li>
+                            <li><a ng-click="getCo2Data('MONTH')">{{::LANG.MONTH}}</a></li>
+                            <li><a ng-click="getCo2Data('YEAR')">{{::LANG.YEAR}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-offset-1 col-md-10 col-xs-12 graphique graphique-round" id="graph_co2">
+                    <highchart id="chart1" config="co2DataConfig"></highchart>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container-center-single">
+                    <div class="double-note">
+                        <div class="note na" id="co2_note2" style="float:left;">N/A</div>
+                        <div class="kilo" id="co2_kilo2" style="float:right;"><div id="co2_ratio1">0</div> <span>{{LANG.EMISSION_NUMBER}} <span class="highlite">km</span></div>
+                        <p class="col-sm-12">{{::LANG.CALCULATION_SELECTED}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h5 style="text-align: left;" class="col-sm-offset-1">{{::LANG.AVERAGE_EMISSION_CO2}}</h5>
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-10 col-xs-12 graphique graphique-750" id="graph_co2_average">
+                    <highchart id="chart1" config="co2AverageConfig"></highchart>
+                </div>
+            </div>
+            <!--
+            <div class="row">
+                <div class="commentaire col-sm-offset-1 col-sm-5 col-xs-12"><div class="cadre">COMMENTAIRE</div></div>
+                <div class="conseil col-sm-5 col-xs-12"><div class="cadre">CONSEIL</div></div>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+
+<div class="row last-row">
+    <span class="clearfix">
+        <div class="previous hidden-xs">
+            <a ui-sref="dashboard.speed" ng-click="scrollTo();">
+                <span class="text">{{::LANG.PREVIOUS}}</span>
+                <span class="name-page">{{::LANG.MENU_SPEED}}</span>
+                <span class="arrow-prev"><img src="images/arrow-prev.png"/></span>
+            </a>
+        </div>
+        <div class="previous-light hidden-sm hidden-md hidden-lg">
+            <a ui-sref="dashboard.speed" ng-click="scrollTo();">
+                <span class="arrow-prev"><img src="images/arrow-prev.png"/></span>
+            </a>
+        </div>
+        <div class="next">
+            <a ui-sref="dashboard.drivingLocation" ng-click="scrollTo();">
+                <span class="text">{{::LANG.NEXT}}</span>
+                <span class="name-page">{{::LANG.MENU_DRIVINGLOCATION}}</span>
+                <span class="arrow-next"><img src="images/arrow-next.png"/></span>
+            </a>
+        </div>
+    </span>
+</div>

@@ -1,0 +1,34 @@
+@import "mixins";
+@import "animations";
+
+//identifier used in targeting theme specific images, etc
+$theme_name: "imetrik";
+
+//the location of the specific theme
+$theme_location: "../images/theme_"+$theme_name+"/";
+
+//theme colors
+$theme_main_color: #25ad3a;
+$theme_main_dark_color: "";
+$theme_main_shadow_color: "";
+$theme_main_light_color: "";
+
+//logo that at beginning of the app during preloading
+$theme_logo_preloader_url: $theme_location + "logo_preloader.svg";
+$theme_logo_preloader_width: 150;
+$theme_logo_preloader_height: 150;
+
+//logo at top of menu in sidebar
+$theme_logo_menu_url: "../images/logo.png";
+$theme_logo_menu_width: 380;
+$theme_logo_menu_height: 81;
+
+//logo used in various other places
+$theme_logo_main_url: "../images/logo.png";
+$theme_logo_main_width: 380;
+$theme_logo_main_height: 81;
+
+//preloader logo gets "loaded" class attached to it once the content has preloaded
+.preloader .logo.loaded {
+  @include animation(rotate50clock 0.2s both ease-in 1);
+}

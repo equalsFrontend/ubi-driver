@@ -1,0 +1,36 @@
+<div id="debug">
+    <div ng-click="refresh()" class="glyphicon glyphicon-refresh" style="
+    position: absolute;
+    top: 10px;
+    right: 10px;"></div>
+
+    <p class="title">DEBUG</p>
+
+    <p class="details">
+        <span>user:</span> {{user}}<br/>
+        <span>token:</span> {{token}}<br/>
+        <span>refreshToken:</span> {{refreshToken}} <br/>
+        <button id="test-refresh-button" ng-click="scrambleToken()" style="margin-top:2px;">Scramble Token</button>
+    </p>
+
+    <p class="details">
+        <span>host:</span> {{location.host()}}<br>
+        <span>port:</span> {{location.port()}}<br>
+        <span>pathname:</span> {{location.path()}}
+    </p>
+
+    <p class="details">
+        <span>currentMachine:</span> {{currentMachine.machineIdentifier}}<br/>
+        <span>range:</span> {{currentRange}}
+    </p>
+
+    <p class="details">
+        <span>startDate:</span> {{startDate.full}}<br>
+        <span>endDate:</span> {{endDate.full}}
+    </p>
+
+    <p class="details">
+        <input id="lesson-debug-input" type="" name="input" placeholder="enter lesson ID" />
+        <button id="lesson-debug-button" ng-click="debugLesson()">Show Lesson</button>
+    </p>
+</div>

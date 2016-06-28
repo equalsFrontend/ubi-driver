@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+
+<html lang="en" ng-app="UBIDriver">
+    <head>
+        <title ng-bind="'MAIF and GO | ' + LANG['MENU_' + $state.current.name.replace('dashboard.', '').toUpperCase()]">MAIF and GO</title>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <!--<meta name="viewport" content="initial-scale=0.75, maximum-scale=0.75">-->
+        <meta name="viewport" content="initial-scale=0.85, maximum-scale=0.85">
+        <meta name="description" content="iMetrik" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+
+        <link rel="stylesheet" type="text/css" href="css/style.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700,300" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.3/angular-material.css">
+
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    </head>
+
+    <body id="body">
+
+        <header><!-- header --></header>
+
+        <div id="main" ui-view="main"></div>
+        <!-- app -->
+        <script type="text/javascript" src="dist/imetrik_libs_v2.0.10.2.js"></script>
+        <script type="text/javascript" src="dist/imetrik_v2.0.10.2.js"></script>
+        <script>
+            window.addEventListener("load",function() {
+                // Set a timeout...
+                setTimeout(function(){
+                    // Hide the address bar!
+                    window.scrollTo(0, 1);
+                }, 0);
+            });
+        </script>
+
+        <button id="digest" ng-click="">&nbsp;</button>
+    </body>
+</html>

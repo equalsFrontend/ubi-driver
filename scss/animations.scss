@@ -1,0 +1,61 @@
+@import "mixins";
+
+@include keyframes(fadeIn) {
+  from    { opacity: 0; }
+  to      { opacity: 1; }
+}
+@include keyframes(fadeOut) {
+  from    { opacity: 1; }
+  to      { opacity: 0; }
+}
+@include keyframes(fadeIn60) {
+  from    { opacity: 0; }
+  to      { opacity: 0.6; }
+}
+@include keyframes(fadeOut60) {
+  from    { opacity: 0.6; }
+  to      { opacity: 0; }
+}
+@include keyframes(rotate50clock) {
+  to      { @include transform(rotate(90deg)); }
+}
+@include keyframes(slideInFromBottom) {
+  from    { @include transform(translateY(100%)); }
+  to      { @include transform(translateY(0)); }
+}
+@include keyframes(slideInFromTop) {
+  from    { @include transform(translateY(-100%)); }
+  to      { @include transform(translateY(0)); }
+}
+@include keyframes(slideOutToTop) {
+  from    { @include transform(translateY(0)); }
+  to      { @include transform(translateY(-100%)); }
+}
+@include keyframes(slideInFromLeft) {
+  from    { @include transform(translateX(-100%)); }
+  to      { @include transform(translateX(0)); }
+}
+@include keyframes(slideOutToLeft) {
+  from    { @include transform(translateX(0)); }
+  to      { @include transform(translateX(-100%)); }
+}
+
+@include keyframes(marginLeft293) {
+  from    { @include transform(translateX(0)); }
+  to      { @include transform(translateX(293px)); }
+}
+
+@include keyframes(marginLeft0) {
+  from    { @include transform(translateX(293px)); }
+  to      { @include transform(translateX(0)); }
+}
+
+@include keyframes(blurTo5){
+  from    { @include blur(0px); }
+  to      { @include blur(5px); }
+}
+
+@include keyframes(blurFrom5){
+  from    { @include blur(5px); }
+  to      { @include blur(0px); }
+}

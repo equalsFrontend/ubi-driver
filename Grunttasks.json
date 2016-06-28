@@ -1,0 +1,425 @@
+{
+  "concat": {
+    "options": {
+      "banner": "/*\n * <%= pkg.name %> - <%= pkg.description %> (DEBUG) \n * Version: <%= pkg.version %>\n * Compiled On: <%= grunt.template.today('dd-mm-yyyy') %> \n*/\n\n"
+    },
+    "application": {
+      "files": {
+        "dist/imetrik_v<%= pkg.version %>.js": [
+          ".ts/*.js",
+          "client/*/*.js",
+          "client/*/*/*.js",
+          "client/*/*/*/*.js",
+          "client/*/*/*/*/*.js",
+          "client/*/*/*/*/*/*.js"
+        ]
+      }
+    },
+    "libraries": {
+      "files": {
+        "dist/imetrik_libs_v<%= pkg.version %>.js": [
+          "bower_components/jquery/dist/jquery.min.js",
+          "bower_components/angular/angular.min.js",
+          "bower_components/angular-animate/angular-animate.min.js",
+          "bower_components/angular-hotkeys/angular-hotkeys.min.js",
+          "bower_components/angular-aria/angular-aria.min.js",
+          "bower_components/angular-material/angular-material.min.js",
+          "bower_components/angular-mocks/angular-mocks.js",
+          "bower_components/angular-route/angular-route.min.js",
+          "bower_components/angular-sanitize/angular-sanitize.min.js",
+          "bower_components/angular-ui-router/release/angular-ui-router.min.js",
+          "bower_components/angular-local-storage/dist/angular-local-storage.min.js",
+          "bower_components/angular-load/angular-load.js",
+          "bower_components/angular-base64/angular-base64.min.js",
+          "bower_components/angular-hotkeys/build/hotkeys.min.js",
+          "bower_components/angular-loading-bar/build/loading-bar.min.js",
+          "bower_components/ng-dialog/js/ngDialog.min.js",
+          "bower_components/jasmine/jasmine-core/jasmine.js",
+          "bower_components/jasmine-jquery/lib/jasmine-jquery.js",
+          "bower_components/jquery-bootstrap-pagination/vendor/assets/javascripts/jquery-bootstrap-pagination.js",
+          "bower_components/moment/moment.js",
+          "bower_components/mobiscroll/js/mobiscroll.custom-2.17.0.min.js",
+          "bower_components/devicejs/lib/device.min.js",
+          "bower_components/bootstrap-daterangepicker/daterangepicker.js",
+
+          "bower_components/highstock-release/highstock.src.js",
+          "bower_components/highcharts-ng/dist/highcharts-ng.min.js",
+          "js/mobiscroll/mobiscroll.min.js"
+        ]
+      }
+    }
+  },
+
+
+  "uglify": {
+    "options": {
+      "banner": "/*\n * <%= pkg.name %> - <%= pkg.description %>\n * Version: <%= pkg.version %>\n * Compiled On: <%= grunt.template.today('dd-mm-yyyy') %> \n*/\n\n",
+      "mangle": true
+    },
+    "application": {
+      "files": {
+        "dist/imetrik_v<%= pkg.version %>.min.js": [
+          ".ts/*.js",
+          "client/*/*.js",
+          "client/*/*/*.js",
+          "client/*/*/*/*.js",
+          "client/*/*/*/*/*.js",
+          "client/*/*/*/*/*/*.js"
+        ]
+      }
+    },
+    "libraries": {
+      "files": {
+        "dist/imetrik_libs_v<%= pkg.version %>.min.js": [
+          "bower_components/jquery/dist/jquery.min.js",
+          "bower_components/angular/angular.min.js",
+          "bower_components/angular-animate/angular-animate.min.js",
+          "bower_components/angular-hotkeys/angular-hotkeys.min.js",
+          "bower_components/angular-aria/angular-aria.min.js",
+          "bower_components/angular-material/angular-material.min.js",
+          "bower_components/angular-mocks/angular-mocks.js",
+          "bower_components/angular-route/angular-route.min.js",
+          "bower_components/angular-sanitize/angular-sanitize.min.js",
+          "bower_components/angular-ui-router/release/angular-ui-router.min.js",
+          "bower_components/angular-local-storage/dist/angular-local-storage.min.js",
+          "bower_components/angular-load/angular-load.js",
+          "bower_components/angular-base64/angular-base64.min.js",
+          "bower_components/angular-hotkeys/build/hotkeys.min.js",
+          "bower_components/angular-loading-bar/build/loading-bar.min.js",
+          "bower_components/ng-dialog/js/ngDialog.min.js",
+          "bower_components/jasmine/jasmine-core/jasmine.js",
+          "bower_components/jasmine-jquery/lib/jasmine-jquery.js",
+          "bower_components/jquery-bootstrap-pagination/vendor/assets/javascripts/jquery-bootstrap-pagination.js",
+          "bower_components/moment/moment.js",
+          "bower_components/mobiscroll/js/mobiscroll.custom-2.17.0.min.js",
+          "bower_components/devicejs/lib/device.min.js",
+          "bower_components/bootstrap-daterangepicker/daterangepicker.js",
+
+          "bower_components/highstock-release/highstock.src.js",
+          "bower_components/highcharts-ng/dist/highcharts-ng.min.js",
+          "js/mobiscroll/mobiscroll.min.js"
+        ]
+      }
+    }
+  },
+
+  "replace": {
+    "dev": {
+      "options": {
+        "patterns": [
+          {
+            "match": "<%= pkg.version %>.min.js",
+            "replacement": "<%= pkg.version %>.js"
+          },
+          {
+            "match": "<%= pkg.version %>.min.css",
+            "replacement": "<%= pkg.version %>.css"
+          }
+        ],
+        "usePrefix": false
+      },
+      "files": [
+        {
+          "expand": true,
+          "flatten": true,
+          "src": ["index.html"],
+          "dest": ""
+        }
+      ]
+    },
+    "dist": {
+      "options": {
+        "patterns": [
+          {
+            "match": "<%= pkg.version %>.js",
+            "replacement": "<%= pkg.version %>.min.js"
+          },
+          {
+            "match": "<%= pkg.version %>.css",
+            "replacement": "<%= pkg.version %>.min.css"
+          }
+        ],
+        "usePrefix": false
+      },
+      "files": [
+        {
+          "expand": true,
+          "flatten": true,
+          "src": ["index.html"],
+          "dest": ""
+        }
+      ]
+    }
+  },
+
+
+  "cssmin": {
+    "dev": {
+      "files": {
+        "css/style.min.css": [
+          "css/bootstrap.min.css",
+          "css/mobiscroll.min.css",
+          "css/style.css",
+          "css/daterangepicker-bs3.css",
+          "bower_components/angular-material/angular-material.min.css"
+        ]
+      }
+    }
+  },
+
+
+  "compass": {
+    "dist": {
+      "options": {
+        "sassDir": "scss",
+        "cssDir": "css",
+        "imagesPath": "images",
+        "outputStyle": "compact",
+        "noLineComments": true,
+        "debugInfo": false,
+        "require": "sass-json-vars",
+        "relativeAssets": true
+      }
+    }
+  },
+
+  "typescript": {
+    "base": {
+      "src": [
+        "client/*/*.ts",
+        "client/*/*/*.ts",
+        "client/*/*/*/*.ts",
+        "client/*/*/*/*/*.ts",
+        "client/*/*/*/*/*/*.ts"
+      ],
+      "dest": ".ts/temp.js",
+      "options": {
+        "module": "amd",
+        "target": "es5",
+        "sourceMap": true,
+        "declaration": true
+      }
+    }
+  },
+  
+  "watch": {
+    "application": {
+      "files": [
+        "client/*/*.js",
+        "client/*/*/*.js",
+        "client/*/*/*/*.js",
+        "client/*/*/*/*/*.js",
+        "client/*/*/*/*/*/*.js"
+      ],
+      "tasks": [
+        "concat:application"
+      ]
+    },
+    "libraries": {
+      "files": [
+        "bower_components/angular/angular.min.js",
+        "bower_components/angular-animate/angular-animate.min.js",
+        "bower_components/angular-hotkeys/angular-hotkeys.min.js",
+        "bower_components/angular-aria/angular-aria.min.js",
+        "bower_components/angular-material/angular-material.min.js",
+        "bower_components/angular-route/angular-route.min.js",
+        "bower_components/angular-sanitize/angular-sanitize.min.js",
+        "bower_components/angular-ui-router/release/angular-ui-router.min.js",
+        "bower_components/angular-local-storage/dist/angular-local-storage.min.js",
+        "bower_components/angular-load/angular-load.js",
+        "bower_components/angular-base64/angular-base64.min.js",
+        "bower_components/angular-hotkeys/build/hotkeys.min.js",
+        "bower_components/angular-loading-bar/build/loading-bar.min.js",
+        "bower_components/ng-dialog/js/ngDialog.min.js",
+        "bower_components/jasmine/jasmine-core/jasmine.js",
+        "bower_components/jasmine-jquery/lib/jasmine-jquery.js",
+        "bower_components/jquery/dist/jquery.min.js",
+        "bower_components/jquery-bootstrap-pagination/vendor/assets/javascripts/jquery-bootstrap-pagination.js",
+        "bower_components/moment/moment.js",
+        "bower_components/mobiscroll/js/mobiscroll.custom-2.17.0.min.js",
+        "bower_components/devicejs/lib/device.min.js",
+        "bower_components/bootstrap-daterangepicker/daterangepicker.js",
+
+        "bower_components/highstock-release/highstock.src.js",
+        "bower_components/highcharts-ng/dist/highcharts-ng.min.js",
+        "js/mobiscroll/mobiscroll.min.js"
+      ],
+      "tasks": [
+        "concat:libraries"
+      ]
+    },
+    "css": {
+      "files": [
+        "css/style.css"
+      ],
+      "tasks": [
+        "cssmin"
+      ]
+    },
+    "scss": {
+      "files": [
+        "scss/*.scss"
+      ],
+      "tasks": [
+        "compass"
+      ]
+    }
+  },
+
+
+  "clean": {
+    "build": {
+      "src": [
+        ".sass-cache",
+        "sources/images/",
+        "sources/js/"
+      ]
+    },
+    "all": {
+      "src": [
+        ".sass-cache",
+        "sources/images/",
+        "sources/js/"
+      ]
+    },
+    "sass": {
+      "src": [
+        ".sass-cache"
+      ]
+    },
+    "typescript": {
+      "src": [
+        ".ts"
+      ]
+    }
+  },
+
+  "clean": {
+    "dist": ["dist"],
+    "typescript": [".ts"]
+  },
+
+  "karma": {
+    "development": {
+      "configFile": "karma.conf.js",
+      "options": {
+        "files": [
+          "<%= karmaDeps.jsFilesForTesting %>"
+        ]
+      }
+    }
+  },
+
+
+  "jshint": {
+    "files": [
+      ".ts/*.js",
+      "client/*/*.js",
+      "client/*/*/*.js",
+      "client/*/*/*/*.js",
+      "client/*/*/*/*/*.js",
+      "client/*/*/*/*/*/*.js",
+      "test/*/*.js"
+    ]
+  },
+
+
+  "jsdoc": {
+    "dist": {
+      "src": [
+        ".ts/*.js",
+        "client/*/*.js",
+        "client/*/*/*.js",
+        "client/*/*/*/*.js",
+        "client/*/*/*/*/*.js",
+        "client/*/*/*/*/*/*.js",
+        "client/ubi/README.md"
+      ],
+      "options": {
+        "destination": "doc",
+        "template": "node_modules/ink-docstrap/template",
+        "configure": "node_modules/ink-docstrap/template/jsdoc.conf.json"
+      }
+    }
+  },
+
+  "compress": {
+    "main": {
+      "options": {
+        "archive": "build/<%= pkg.name %>-<%= pkg.version %>.zip"
+      },
+      "files": [
+        { "src": [
+          "client/**/*",
+          "css/**/*",
+          "dist/**/*",
+          "fonts/**/*",
+          "images/**/*",
+          "js/**/*",
+          "lang/**/*",
+          "favicon.ico",
+          "index.html"
+        ] }
+      ]
+    }
+  },
+
+
+  "maven_deploy" : {
+    "options": {
+      "groupId": "com.imetrik.saas.frontend.ubi",
+      "artifactId": "driver"
+    },
+
+    "snapshot": {
+      "options": {
+        "version": "<%= pkg.version %>",
+        "snapshot": "true",
+        "classifier": "package",
+        "packaging": "zip",
+        "goal": "deploy",
+        "url": "http://nexus.imetrik.com/content/repositories/im-saas-snapshots",
+        "repositoryId": "im-saas-snapshots"
+      },
+
+      "files": [
+        { "src": [
+          "client/**/*",
+          "css/**/*",
+          "dist/**/*",
+          "fonts/**/*",
+          "images/**/*",
+          "js/**/*",
+          "lang/**/*",
+          "favicon.ico",
+          "index.html"
+        ] }
+      ]
+    },
+
+    "release": {
+      "options": {
+        "version": "<%= pkg.version %>",
+        "classifier": "package",
+        "packaging": "zip",
+        "goal": "deploy",
+        "url": "http://nexus.imetrik.com/content/repositories/im-saas-releases",
+        "repositoryId": "im-saas-releases"
+      },
+
+      "files": [
+        { "src": [
+          "client/**/*",
+          "css/**/*",
+          "dist/**/*",
+          "fonts/**/*",
+          "images/**/*",
+          "js/**/*",
+          "lang/**/*",
+          "favicon.ico",
+          "index.html"
+        ] }
+      ]
+    }
+  }
+}

@@ -1,0 +1,110 @@
+<div class="row placeholders">
+    <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs header-content">
+        <span class="notation-logo"></span>
+        <h4>{{::LANG.NOTE_SELECTED_PERIOD}}</h4>
+        <span class="clearfix"></span>
+    </div>
+</div>
+
+<div class="row data-notation">
+    <div class="notation-container clearfix">
+        <div class="col-sm-12 col-xs-12 col-xs-10 header-content hidden-md hidden-lg hidden-sm">
+            <h4>{{::LANG.NOTE_SELECTED_PERIOD}}</h4>
+            <span class="clearfix"></span>
+        </div>
+        <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10 clearfix notation-sub-container">
+            <div class="content-button">
+                <div class="open clearfix">
+                    <h5>{{::LANG.MENU_MILEAGE}}</h5>
+                    <div class="note {{cleanGrade(LANG.GRADE[(mileageData.summary.grade || '0')]).toLowerCase()}}" id="km_note1">{{LANG.GRADE[(mileageData.summary.grade || '0')]}}</div>
+                    <div class="legend">
+                        <h6>{{::LANG.LEGEND}} :</h6>
+                        <div class="entry a">{{::LANG.NOTE_A}}</div>
+                        <div class="entry b">{{::LANG.NOTE_B}}</div>
+                        <div class="entry c">{{::LANG.NOTE_C}}</div>
+                        <div class="entry d">{{::LANG.NOTE_D}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="button button-close hidden-lg hidden-md hidden-sm">{{::LANG.CLOSE}}<span class="arrow-up"></span></div>
+            <div class="button button-open hidden-lg hidden-md hidden-sm">{{::LANG.OPEN}}<span class="arrow-down"></span></div>
+        </div>
+    </div>
+</div>
+
+<div class="row placeholders hidden-xs">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-content">
+        <span class="kilometrage-logo "><img class="img-responsive" src="images/kilometre.png"/></span>
+        <h4>{{::LANG.MY_DATA}}</h4>
+        <span class="clearfix"></span>
+    </div>
+</div>
+
+<div class="row data-content">
+    <div class="data-container clearfix">
+        <div class="col-sm-12 col-xs-12 col-xs-10 header-content hidden-md hidden-lg hidden-sm">
+            <h4>{{::LANG.MY_DATA}}</h4>
+            <span class="clearfix"></span>
+        </div>
+
+        <div class="chart-section col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xs-12">
+            <h4 class="col-md-offset-1">{{::LANG.KILOMETERS_TRAVELED}}</h4>
+            <div class="row">
+                <div class="col-md-offset-1 granularity">
+                    <div class="btn-group day" ng-if="($state.current.name.indexOf('summary')) < 0 && ($state.current.name != 'dashboard')">
+                        <button type="button" class="btn btn-default" dropdown="gran-dropdown,active" >{{LANG[mileageDataGranularity]}}</button>
+                        <button type="button" class="btn btn-default dropdown-toggle" dropdown="gran-dropdown,active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" id="gran-dropdown">
+                            <li><a ng-click="getMileageData('DAY')">{{::LANG.DAY}}</a></li>
+                            <li><a ng-click="getMileageData('MONTH')">{{::LANG.MONTH}}</a></li>
+                            <li><a ng-click="getMileageData('YEAR')">{{::LANG.YEAR}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-offset-1 col-md-10 graphique" id="graph_kilometre">
+                    <highchart id="chart1" config="mileageDataConfig"></highchart>
+                </div>
+            </div>
+            <div class="row">
+                <div class="note na" id="km_note2">N/A</div>
+                <p class="col-sm-12">{{::LANG.CALCULATION_SELECTED}}</p>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xs-12">
+            <h4 class="col-sm-offset-1">{{::LANG.AVERAGE_KILOMETERS_DAY}}</h4>
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-10 graphique graphique-750" id="graph_kilometre_day">
+                    <highchart id="chart1" config="mileageAverageConfig"></highchart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row last-row">
+    <span class="clearfix">
+        <div class="previous hidden-xs">
+            <a ui-sref="dashboard.summary" ng-click="scrollTo();">
+                <span class="text">{{::LANG.PREVIOUS}}</span>
+                <span class="name-page">{{::LANG.MENU_SUMMARY}}</span>
+                <span class="arrow-prev"><img src="images/arrow-prev.png"/></span>
+            </a>
+        </div>
+        <div class="previous-light hidden-sm hidden-md hidden-lg">
+            <a ui-sref="dashboard.summary" ng-click="scrollTo();">
+                <span class="arrow-prev"><img src="images/arrow-prev.png"/></span>
+            </a>
+        </div>
+        <div class="next">
+            <a ui-sref="dashboard.harshEvents" ng-click="scrollTo();">
+                <span class="text">{{::LANG.NEXT}}</span>
+                <span class="name-page">{{::LANG.ACCELERATION_AND_BREAKING}}</span>
+                <span class="arrow-next"><img src="images/arrow-next.png"/></span>
+            </a>
+        </div>
+    </span>
+</div>

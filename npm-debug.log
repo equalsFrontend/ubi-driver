@@ -1,0 +1,144 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'jsinspect' ]
+2 info using npm@2.11.2
+3 info using node@v0.12.5
+4 verbose install initial load of /usr/local/lib/package.json
+5 verbose readDependencies loading dependencies from /usr/local/lib/package.json
+6 silly cache add args [ 'jsinspect', null ]
+7 verbose cache add spec jsinspect
+8 silly cache add parsed spec { raw: 'jsinspect',
+8 silly cache add   scope: null,
+8 silly cache add   name: 'jsinspect',
+8 silly cache add   rawSpec: '',
+8 silly cache add   spec: '*',
+8 silly cache add   type: 'range' }
+9 silly addNamed jsinspect@*
+10 verbose addNamed "*" is a valid semver range for jsinspect
+11 silly addNameRange { name: 'jsinspect', range: '*', hasData: false }
+12 silly mapToRegistry name jsinspect
+13 silly mapToRegistry using default registry
+14 silly mapToRegistry registry https://registry.npmjs.org/
+15 silly mapToRegistry uri https://registry.npmjs.org/jsinspect
+16 verbose addNameRange registry:https://registry.npmjs.org/jsinspect not in flight; fetching
+17 verbose request uri https://registry.npmjs.org/jsinspect
+18 verbose request no auth needed
+19 info attempt registry request try #1 at 10:55:57 AM
+20 verbose request id 127808d4339f280a
+21 http request GET https://registry.npmjs.org/jsinspect
+22 http 200 https://registry.npmjs.org/jsinspect
+23 silly get cb [ 200,
+23 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+23 silly get     etag: '"71A77UOA8DNLXGN91CT8X9PU5"',
+23 silly get     'content-type': 'application/json',
+23 silly get     'cache-control': 'max-age=60',
+23 silly get     'content-length': '19397',
+23 silly get     'accept-ranges': 'bytes',
+23 silly get     date: 'Wed, 19 Aug 2015 14:55:56 GMT',
+23 silly get     via: '1.1 varnish',
+23 silly get     age: '0',
+23 silly get     connection: 'keep-alive',
+23 silly get     'x-served-by': 'cache-iad2141-IAD',
+23 silly get     'x-cache': 'HIT',
+23 silly get     'x-cache-hits': '1',
+23 silly get     'x-timer': 'S1439996156.029285,VS0,VE56',
+23 silly get     vary: 'Accept' } ]
+24 verbose get saving jsinspect to /Users/alexboisselle/.npm/registry.npmjs.org/jsinspect/.cache.json
+25 silly addNameRange number 2 { name: 'jsinspect', range: '*', hasData: true }
+26 silly addNameRange versions [ 'jsinspect',
+26 silly addNameRange   [ '0.0.2',
+26 silly addNameRange     '0.0.3',
+26 silly addNameRange     '0.1.0',
+26 silly addNameRange     '0.2.0',
+26 silly addNameRange     '0.3.0',
+26 silly addNameRange     '0.4.0',
+26 silly addNameRange     '0.5.0',
+26 silly addNameRange     '0.6.0',
+26 silly addNameRange     '0.6.1' ] ]
+27 silly addNamed jsinspect@0.6.1
+28 verbose addNamed "0.6.1" is a plain semver version for jsinspect
+29 silly mapToRegistry name jsinspect
+30 silly mapToRegistry using default registry
+31 silly mapToRegistry registry https://registry.npmjs.org/
+32 silly mapToRegistry uri https://registry.npmjs.org/jsinspect
+33 verbose addRemoteTarball https://registry.npmjs.org/jsinspect/-/jsinspect-0.6.1.tgz not in flight; adding
+34 verbose addRemoteTarball [ 'https://registry.npmjs.org/jsinspect/-/jsinspect-0.6.1.tgz',
+34 verbose addRemoteTarball   'eeb174e3e0c6cb5eed179b00dda2f626a84fb85b' ]
+35 info retry fetch attempt 1 at 10:55:57 AM
+36 info attempt registry request try #1 at 10:55:57 AM
+37 http fetch GET https://registry.npmjs.org/jsinspect/-/jsinspect-0.6.1.tgz
+38 http fetch 200 https://registry.npmjs.org/jsinspect/-/jsinspect-0.6.1.tgz
+39 silly fetchAndShaCheck shasum eeb174e3e0c6cb5eed179b00dda2f626a84fb85b
+40 verbose addTmpTarball /var/folders/zs/zl5hdksj1ys2809pbd2_7mbm0000gn/T/npm-66278-86f40fff/registry.npmjs.org/jsinspect/-/jsinspect-0.6.1.tgz not in flight; adding
+41 verbose addTmpTarball already have metadata; skipping unpack for jsinspect@0.6.1
+42 silly cache afterAdd jsinspect@0.6.1
+43 verbose afterAdd /Users/alexboisselle/.npm/jsinspect/0.6.1/package/package.json not in flight; writing
+44 verbose afterAdd /Users/alexboisselle/.npm/jsinspect/0.6.1/package/package.json written
+45 silly install resolved [ { name: 'jsinspect',
+45 silly install resolved     version: '0.6.1',
+45 silly install resolved     description: 'Detect structural similarities in your code',
+45 silly install resolved     keywords:
+45 silly install resolved      [ 'inspect',
+45 silly install resolved        'detect',
+45 silly install resolved        'code',
+45 silly install resolved        'duplicate',
+45 silly install resolved        'structure',
+45 silly install resolved        'copy',
+45 silly install resolved        'paste' ],
+45 silly install resolved     author: { name: 'Daniel St. Jules', email: 'danielst.jules@gmail.com' },
+45 silly install resolved     license: 'MIT',
+45 silly install resolved     homepage: 'https://github.com/danielstjules/jsinspect',
+45 silly install resolved     repository:
+45 silly install resolved      { type: 'git',
+45 silly install resolved        url: 'https://github.com/danielstjules/jsinspect.git' },
+45 silly install resolved     dependencies:
+45 silly install resolved      { acorn: '2.0.1',
+45 silly install resolved        'acorn-bfs': '0.0.1',
+45 silly install resolved        chalk: '*',
+45 silly install resolved        commander: '*',
+45 silly install resolved        diff: '1.4.0',
+45 silly install resolved        'node-filepaths': '0.1.0',
+45 silly install resolved        'strip-indent': '^1.0.0',
+45 silly install resolved        'strip-json-comments': '1.0.2' },
+45 silly install resolved     devDependencies: { mocha: '*', 'expect.js': '*' },
+45 silly install resolved     bin: { jsinspect: './bin/jsinspect' },
+45 silly install resolved     scripts: { test: 'mocha -R spec spec spec/reporters' },
+45 silly install resolved     gitHead: '72c4fb5596031013322e19f5a56824cc04135229',
+45 silly install resolved     bugs: { url: 'https://github.com/danielstjules/jsinspect/issues' },
+45 silly install resolved     _id: 'jsinspect@0.6.1',
+45 silly install resolved     _shasum: 'eeb174e3e0c6cb5eed179b00dda2f626a84fb85b',
+45 silly install resolved     _from: 'jsinspect@*',
+45 silly install resolved     _npmVersion: '2.7.1',
+45 silly install resolved     _nodeVersion: '1.6.2',
+45 silly install resolved     _npmUser: { name: 'danielstjules', email: 'danielst.jules@gmail.com' },
+45 silly install resolved     maintainers: [ [Object] ],
+45 silly install resolved     dist:
+45 silly install resolved      { shasum: 'eeb174e3e0c6cb5eed179b00dda2f626a84fb85b',
+45 silly install resolved        tarball: 'http://registry.npmjs.org/jsinspect/-/jsinspect-0.6.1.tgz' },
+45 silly install resolved     directories: {},
+45 silly install resolved     _resolved: 'https://registry.npmjs.org/jsinspect/-/jsinspect-0.6.1.tgz' } ]
+46 info install jsinspect@0.6.1 into /usr/local/lib
+47 info installOne jsinspect@0.6.1
+48 verbose installOne of jsinspect to /usr/local/lib not in flight; installing
+49 warn locking Error: EACCES, open '/Users/alexboisselle/.npm/_locks/jsinspect-a2692171ed19c392.lock'
+49 warn locking     at Error (native)
+49 warn locking  /Users/alexboisselle/.npm/_locks/jsinspect-a2692171ed19c392.lock failed { [Error: EACCES, open '/Users/alexboisselle/.npm/_locks/jsinspect-a2692171ed19c392.lock']
+49 warn locking   errno: -13,
+49 warn locking   code: 'EACCES',
+49 warn locking   path: '/Users/alexboisselle/.npm/_locks/jsinspect-a2692171ed19c392.lock' }
+50 verbose stack Error: Attempt to unlock /usr/local/lib/node_modules/jsinspect, which hasn't been locked
+50 verbose stack     at unlock (/usr/local/lib/node_modules/npm/lib/utils/locker.js:66:11)
+50 verbose stack     at cb (/usr/local/lib/node_modules/npm/lib/install.js:1017:5)
+50 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:1021:20
+50 verbose stack     at /usr/local/lib/node_modules/npm/lib/utils/locker.js:40:9
+50 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/lockfile/lockfile.js:149:38)
+50 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/lockfile/lockfile.js:177:38
+50 verbose stack     at FSReqWrap.oncomplete (fs.js:95:15)
+51 verbose cwd /Users/alexboisselle/Documents/Work/imv2/frontend/UBI/Driver/trunk
+52 error Darwin 14.4.0
+53 error argv "node" "/usr/local/bin/npm" "install" "-g" "jsinspect"
+54 error node v0.12.5
+55 error npm  v2.11.2
+56 error Attempt to unlock /usr/local/lib/node_modules/jsinspect, which hasn't been locked
+57 error If you need help, you may report this error at:
+57 error     <https://github.com/npm/npm/issues>
+58 verbose exit [ 1, true ]

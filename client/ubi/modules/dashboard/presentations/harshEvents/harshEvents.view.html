@@ -1,0 +1,304 @@
+<div class="row placeholders">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-xs header-content">
+        <span class="notation-logo hidden-xs"></span>
+        <h4 class="title">{{::LANG.MY_GRADES}}</h4>
+        <span class="clearfix"></span>
+    </div>
+</div>
+
+<div class="row data-notation">
+    <div class="notation-container clearfix">
+        <div class="col-sm-12 col-xs-12 col-xs-10 header-content hidden-md hidden-lg hidden-sm">
+            <h4 class="title">{{::LANG.MY_GRADES}}</h4>
+            <span class="clearfix"></span>
+        </div>
+        <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10 clearfix notation-sub-container">
+            <div class="content-button">
+                <div class="open clearfix">
+                    <div class="row">
+                        <div class="container-center">
+                            <div class="double-note">
+                                <div class="container-logo-note left">
+                                    <h5 class="">{{::LANG.BRAKING}}</h5>
+                                    <div class="note {{cleanGrade(LANG.GRADE[harshBrakingData.summary.brakingGrade || '0']).toLowerCase()}}" id="note_braking">{{LANG.GRADE[harshBrakingData.summary.brakingGrade || '0']}}</div>
+                                    <div class="kilo"><div id="avg_100k_braking">{{checkAvailable(harshBrakingData.summary.brakingPer100KM, 'N/A')}}</div> <span>{{LANG.HARD_BRAKING_FOR}} <span class="highlite">100km</span></span></div>
+                                </div>
+                                <div class="container-logo-note right">
+                                    <h5 class="">{{::LANG.ACCELERATION}}</h5>
+                                    <div class="note {{cleanGrade(LANG.GRADE[harshAccelerationData.summary.accelerationGrade || '0']).toLowerCase()}}" id="note_acceleration">{{LANG.GRADE[harshAccelerationData.summary.accelerationGrade || '0']}}</div>
+                                    <div class="kilo"><div  id="avg_100k_acceleration">{{checkAvailable(harshAccelerationData.summary.accelerationPer100KM, 'N/A')}}</div> <span>{{LANG.HARD_ACCELERATION_FOR}} <span class="highlite">100km</span></span></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="legend">
+                            <h6>{{::LANG.LEGEND}} :</h6>
+                            <div class="entry a">{{::LANG.NOTE_A}}</div>
+                            <div class="entry b">{{::LANG.NOTE_B}}</div>
+                            <div class="entry c">{{::LANG.NOTE_C}}</div>
+                            <div class="entry d">{{::LANG.NOTE_D}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button button-close hidden-lg hidden-md hidden-sm">{{::LANG.CLOSE}}<span class="arrow-up"></span></div>
+            <div class="button button-open hidden-lg hidden-md hidden-sm">{{::LANG.OPEN}}<span class="arrow-down"></span></div>
+        </div>
+    </div>
+</div>
+
+<div class="page page1">
+    <div class="row placeholders hidden-xs">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-content">
+            <span class="freinage-logo "><img class="img-responsive" src="images/freinage.png"/></span>
+            <h4>{{::LANG.MY_BRAKING_DATA}}</h4>
+            <span class="clearfix"></span>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="row data-content">
+            <div class="data-container freinage-container clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-content hidden-lg hidden-md hidden-sm">
+                    <h4>{{::LANG.MY_BRAKING_DATA}}</h4>
+                    <span class="clearfix"></span>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h4 class="col-md-offset-1">{{::LANG.HARD_BREAKING_NUMBER}}</h4>
+                    <div class="row">
+                        <div class="col-md-offset-1 granularity">
+                            <div class="btn-group day">
+                                <button type="button" class="btn btn-default" dropdown="gran-dropdown,active" >{{LANG[harshBrakingDataGranularity]}}</button>
+                                <button type="button" class="btn btn-default dropdown-toggle" dropdown="gran-dropdown,active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" id="gran-dropdown">
+                                    <li><a ng-click="getHarshBrakingEventsData('DAY')">{{::LANG.DAY}}</a></li>
+                                    <li><a ng-click="getHarshBrakingEventsData('MONTH')">{{::LANG.MONTH}}</a></li>
+                                    <li><a ng-click="getHarshBrakingEventsData('YEAR')">{{::LANG.YEAR}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-offset-1 col-md-10 col-xs-12 graphique graphique-round" id="braking_count">
+                            <highchart id="chart1" config="harshBrakingDataConfig"></highchart>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container-center-single">
+                            <div class="double-note">
+                                <div class="note na" id="note_braking1">N/A</div>
+                                <div class="kilo"><div id="avg_100k_braking1">N/A</div> <span>{{::LANG.HARD_BRAKING_FOR}} <span class="highlite">100km</span></span></div>
+                                <p>{{::LANG.CALCULATION_SELECTED}}</p>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="separator"></div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h4 class="col-sm-offset-1">{{::LANG.HARD_BREAKING_AVERAGE}}</h4>
+                    <div class="row">
+                        <div class="col-sm-offset-1 col-sm-10 col-xs-12 graphique graphique-750" id="braking_count_day">
+                            <highchart id="chart1" config="harshBrakingDataAverageChartConfig"></highchart>
+                        </div>
+                    </div>
+                    <!--<div class="row">
+                        <div class="commentaire col-sm-offset-1 col-sm-5 col-xs-12"><div class="cadre">COMMENTAIRE</div></div>
+                        <div class="conseil col-sm-5 col-xs-12"><div class="cadre">CONSEIL</div></div>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+
+        <div class="row placeholders hidden-xs">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-content">
+                <span class="acceleration-logo "><img class="img-responsive" src="images/acceleration.png"/></span>
+                <h4>{{::LANG.MY_ACCELERATION_DATA}}</h4>
+                <span class="clearfix"></span>
+            </div>
+        </div>
+
+        <div class="row data-content">
+            <div class="data-container acceleration-container clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-content hidden-lg hidden-md hidden-sm">
+                    <h4>{{::LANG.MY_ACCELERATION_DATA}}</h4>
+                    <span class="clearfix"></span>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h4 class="col-md-offset-1">{{::LANG.HARD_ACCELERATION_NUMBER}}</h4>
+                    <div class="row">
+                        <div class="col-md-offset-1 granularity">
+                            <div class="btn-group day">
+                                <button type="button" class="btn btn-default" dropdown="gran-dropdown2,active" >{{LANG[harshAccelerationDataGranularity]}}</button>
+                                <button type="button" class="btn btn-default dropdown-toggle" dropdown="gran-dropdown2,active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" id="gran-dropdown2">
+                                    <li><a ng-click="getHarshAccelEventsData('DAY')">{{::LANG.DAY}}</a></li>
+                                    <li><a ng-click="getHarshAccelEventsData('MONTH')">{{::LANG.MONTH}}</a></li>
+                                    <li><a ng-click="getHarshAccelEventsData('YEAR')">{{::LANG.YEAR}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-offset-1 col-md-10 col-xs-12 graphique graphique-round" id="braking_count">
+                            <highchart id="chart1" config="harshAccelerationDataConfig"></highchart>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container-center-single">
+                            <div class="double-note">
+                                <div class="note na" id="note_acceleration1">N/A</div>
+                                <div class="kilo"><div id="avg_100k_acceleration1">N/A</div> <span>{{::LANG.HARD_ACCELERATION_FOR}} <span class="highlite">100km</span></span></div>
+                                <p>{{::LANG.CALCULATION_SELECTED}}</p>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 grah-acceleration">
+                        <h4 class="col-sm-offset-1">{{::LANG.HARD_ACCELERATION_AVERAGE}}</h4>
+                        <div class="row">
+                            <div class="col-sm-offset-1 col-sm-10 col-xs-12 graphique graphique-750" id="acceleration_count_day"></div>
+                        </div>
+                        <!--<div class="row">
+                            <div class="commentaire col-sm-offset-1 col-sm-5 col-xs-12"><div class="cadre">COMMENTAIRE</div></div>
+                            <div class="conseil col-sm-5 col-xs-12"><div class="cadre">CONSEIL</div></div>
+                        </div>
+                        -->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-10 col-xs-12 graphique graphique-round" id="acceleration_count">
+                            <highchart id="chart1" config="harshAccelerationDataAverageChartConfig"></highchart>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page page2 close">
+    <div class="row placeholders hidden-xs">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-content">
+            <span class="freinage-logo tableau-icon"><img class="img-responsive" src="images/tableau-icon.png"/></span>
+            <h4>{{::LANG.LIST_OF_EVENTS}}</h4>
+            <span class="clearfix"></span>
+        </div>
+    </div>
+
+    <div class="row data-freinage data-content">
+        <div class="">
+            <div class="freinage-container data-container clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-content hidden-lg hidden-md hidden-sm">
+                    <h4>{{::LANG.LIST_OF_EVENTS}}</h4>
+                    <span class="clearfix"></span>
+                </div>
+
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
+                    <div class="row">
+                        <div class="table-responsive table-frequence ">
+                            <table class="table table-striped" id="table-event">
+                                <thead>
+                                <tr>
+                                    <th class="left-title">{{::LANG.TYPE}}</th>
+                                    <th class="left-title">{{::LANG.DATE_HOUR}}</th>
+                                    <th class="left-title">{{::LANG.PLACE}}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="event in allHarshEvents | limitTo: harshEventsTableItemsPerPage : harshEventTablePage * harshEventsTableItemsPerPage">
+                                        <td><span><img ng-src="images/{{event.type}}-icon.png"/></span> {{LANG[event.type.toUpperCase()]}}</td>
+                                        <td>{{event.date}}</td>
+                                        <td class="link">
+                                            <a href="#page3" ng-click="showHarshEvent(event); showPage('3');">{{LANG.SEE_MAP}}</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                <td colspan="3">
+                                    <div class="pagination" id="pagination">
+                                        <ul class="simple-pagination">
+                                            <li ng-class="prevPageDisabled()" class="pagination-control pagination-left">
+                                                <a href ng-click="prevPage()">« <span class="hidden-xs">{{::LANG.PREVIOUS}}</span></a>
+                                            </li>
+                                            <li ng-repeat="n in range()"
+                                                ng-class="{active: n == harshEventTablePage}" class="pagination-control pagination-page">
+                                                <a ng-click="setPage(n)">{{n+1}}</a>
+                                            </li>
+                                            <li ng-class="nextPageDisabled()" class="pagination-control pagination-right">
+                                                <a href ng-click="nextPage()"><span class="hidden-xs">{{::LANG.NEXT}}</span> »</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page page3 close">
+    <div class="row placeholders hidden-xs">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-content">
+            <span class="freinage-logo "><img class="img-responsive" src="images/pointer.png"/></span>
+            <h4>{{::LANG.LOCATION_OF_EVENTS}}</h4>
+            <span class="clearfix"></span>
+        </div>
+    </div>
+
+    <div class="row data-freinage data-content">
+        <div class="">
+            <div class="freinage-container data-container clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-content hidden-lg hidden-sm hidden-md">
+                    <h4>{{::LANG.LOCATION_OF_EVENTS}}</h4>
+                    <span class="clearfix"></span>
+                </div>
+
+                <div>
+
+                    <ubi-cluster-map mapdata="mapEvents"></ubi-cluster-map>
+                    <!--<div id='mapDiv'></div>-->
+
+                    <div class="legend">
+                        <h6>{{::LANG.LEGEND}} :</h6>
+                        <div class="entry d">{{::LANG.BRAKING}}</div>
+                        <div class="entry c">{{::LANG.ACCELERATIONS}}</div>
+                        <div class="entry e">{{::LANG.EVENT_GROUP}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row last-row">
+    <span class="clearfix">
+        <div class="previous hidden-xs">
+            <a ui-sref="dashboard.mileage" ng-click="scrollTo();">
+                <span class="text">{{::LANG.PREVIOUS}}</span>
+                <span class="name-page">{{::LANG.MENU_MILEAGE}}</span>
+                <span class="arrow-prev"><img src="images/arrow-prev.png"/></span>
+            </a>
+        </div>
+        <div class="previous-light hidden-sm hidden-md hidden-lg">
+            <a ui-sref="dashboard.mileage" ng-click="scrollTo();">
+                <span class="arrow-prev"><img src="images/arrow-prev.png"/></span>
+            </a>
+        </div>
+        <div class="next">
+            <a ui-sref="dashboard.timeUse" ng-click="scrollTo();">
+                <span class="text">{{::LANG.NEXT}}</span>
+                <span class="name-page">{{::LANG.MENU_TIMEUSE}}</span>
+                <span class="arrow-next"><img src="images/arrow-next.png"/></span>
+            </a>
+        </div>
+    </span>
+</div>

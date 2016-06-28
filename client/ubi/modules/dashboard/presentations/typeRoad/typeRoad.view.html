@@ -1,0 +1,122 @@
+<div class="row placeholders">
+    <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs header-content">
+        <span class="notation-logo"></span>
+        <h4 class="title">{{::LANG.NOTE_SELECTED_PERIOD}}</h4>
+        <span class="clearfix"></span>
+    </div>
+</div>
+
+<div class="row data-notation">
+    <div class="notation-container clearfix">
+        <div class="col-sm-12 col-xs-12 col-xs-10 header-content hidden-md hidden-lg hidden-sm">
+            <h4 class="title">{{::LANG.NOTE_SELECTED_PERIOD}}</h4>
+            <span class="clearfix"></span>
+        </div>
+        <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10 clearfix notation-sub-container">
+            <div class="content-button">
+                <div class="open clearfix">
+                    <h5>{{::LANG.MENU_TYPEROAD}}</h5>
+                    <div class="note {{cleanGrade(LANG.GRADE[typeRoadData.summary.grade || '0']).toLowerCase()}}" id="typeroute_note1">{{LANG.GRADE[typeRoadData.summary.grade || '0']}}</div>
+                    <div class="legend">
+                        <h6>{{::LANG.LEGEND}} :</h6>
+                        <div class="entry a">{{::LANG.NOTE_A}}</div>
+                        <div class="entry b">{{::LANG.NOTE_B}}</div>
+                        <div class="entry c">{{::LANG.NOTE_C}}</div>
+                        <div class="entry d">{{::LANG.NOTE_D}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="button button-close hidden-lg hidden-md hidden-sm">{{::LANG.CLOSE}}<span class="arrow-up"></span></div>
+            <div class="button button-open hidden-lg hidden-md hidden-sm">{{::LANG.OPEN}}<span class="arrow-down"></span></div>
+        </div>
+    </div>
+</div>
+
+<div class="row placeholders hidden-xs">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-content">
+        <span class="route-logo "><img class="img-responsive" src="images/type.png"/></span>
+        <h4 class="type">{{::LANG.MY_DATA}}</h4>
+        <span class="clearfix"></span>
+    </div>
+</div>
+
+<div class="row data-route data-content">
+    <div class="route-container data-container clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-content hidden-sm hidden-lg hidden-md">
+            <h4 class="left-title">{{::LANG.MY_DATA}}</h4>
+            <span class="clearfix"></span>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xs-12 chart-section">
+            <h4 class="col-md-offset-1">{{::LANG.DISTRIBUTION_ROAD_TYPE}}</h4>
+            <div class="row">
+                <div class="col-md-offset-1 granularity">
+                    <div class="btn-group day">
+                        <button type="button" class="btn btn-default" dropdown="gran-dropdown,active" >{{LANG[typeRoadDataGranularity]}}</button>
+                        <button type="button" class="btn btn-default dropdown-toggle" dropdown="gran-dropdown,active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" id="gran-dropdown">
+                            <li><a ng-click="getTypeRoadData('DAY')">{{::LANG.DAY}}</a></li>
+                            <li><a ng-click="getTypeRoadData('MONTH')">{{::LANG.MONTH}}</a></li>
+                            <li><a ng-click="getTypeRoadData('YEAR')">{{::LANG.YEAR}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-offset-1 col-md-10 graphique graphique-round" id="graph_type_road">
+                    <highchart id="chart1" config="typeRoadChartConfig"></highchart>
+                </div>
+            </div>
+            <div class="row">
+                <div class="note na" id="typeroute_note2">N/A</div>
+                <p class="col-sm-12">{{::LANG.CALCULATION_SELECTED}}</p>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xs-12">
+            <h4 class="col-sm-offset-1">{{::LANG.AVERAGE_ROAD_TYPE_WEEK}}</h4>
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-10 graphique" id="graph_type_road_average">
+                    <highchart id="chart1" config="typeRoadAverage1Config"></highchart>
+                </div>
+            </div>
+            <h4 class="col-sm-offset-1">{{::LANG.AVERAGE_ROAD_TYPE_WEEK2}}</h4>
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-10 graphique" id="graph_type_road_average2">
+                    <highchart id="chart1" config="typeRoadAverage2Config"></highchart>
+                </div>
+            </div>
+            <!--
+            <div class="row">
+                <div class="commentaire col-sm-offset-1 col-sm-5"><div class="cadre">COMMENTAIRE</div></div>
+                <div class="conseil col-sm-5"><div class="cadre">CONSEIL</div></div>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+
+<div class="row last-row">
+    <span class="clearfix">
+        <div class="previous hidden-xs">
+            <a ui-sref="dashboard.timeUse" ng-click="scrollTo();">
+                <span class="text">{{::LANG.PREVIOUS}}</span>
+                <span class="name-page">{{::LANG.MENU_TIMEUSE}}</span>
+                <span class="arrow-prev"><img src="images/arrow-prev.png"/></span>
+            </a>
+        </div>
+        <div class="previous-light hidden-sm hidden-md hidden-lg">
+            <a ui-sref="dashboard.timeUse" ng-click="scrollTo();">
+                <span class="arrow-prev"><img src="images/arrow-prev.png"/></span>
+            </a>
+        </div>
+        <div class="next">
+            <a ui-sref="dashboard.speed" ng-click="scrollTo();">
+                <span class="text">{{::LANG.NEXT}}</span>
+                <span class="name-page">{{::LANG.MENU_SPEED}}</span>
+                <span class="arrow-next"><img src="images/arrow-next.png"/></span>
+            </a>
+        </div>
+    </span>
+</div>

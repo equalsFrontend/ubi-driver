@@ -1,0 +1,36 @@
+{
+  "name": "Imetrik",
+  "description": "UBI Driver App",
+  "version": "2.0.7",
+  "analytics": false,
+  "devDependencies": {
+    "angular": "~1.4.3",
+    "angular-animate": "~1.4.3",
+    "angular-base64": "~2.0.5",
+    "angular-floating-label": "~1.0.0",
+    "angular-load": "~0.2.0",
+    "angular-local-storage": "~0.2.2",
+    "angular-material": "~0.11.0",
+    "angular-mocks": "~1.4.3",
+    "angular-route": "~1.4.3",
+    "angular-sanitize": "~1.4.3",
+    "angular-ui-router": "~0.2.15",
+    "angular-loading-bar": "",
+    "bootstrap-daterangepicker": "~2.0.9",
+    "devicejs": "~0.2.7",
+    "highcharts": "~4.1.7",
+    "highcharts-ng": "~0.0.8",
+    "highstock": "~3.0.1",
+    "highstock-release": "2.1.9",
+    "jquery": "2.1.4",
+    "jquery-bootstrap-pagination": "~1.2.0",
+    "moment": "~2.10.6",
+    "ng-dialog": "~0.5.5",
+    "observe-js": "~0.5.6",
+    "underscore": "1.6.0",
+    "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.6.0"
+  },
+  "resolutions": {
+    "angular": "1.4.7"
+  }
+}

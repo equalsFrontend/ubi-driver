@@ -1,0 +1,45 @@
+<div class="row placeholders info ng-scope">
+    <br/>
+    <div class="data-content">
+        <div class="data-container history-content">
+            <p>Basé sur l’analyse de votre conduite,  retrouvez dans cette rubrique l’historique de vos conseils de conduite personnalisés. Vous avez une interrogation, une incompréhension liés aux conseils qui vous ont été délivrés, n’hésitez pas, posez votre question via <a href="mailto:projet-pilote@maif.fr">Notre expert vous répond</a>. Une réponse vous sera apportée dans les plus brefs délais.</p>
+        </div>
+    </div>
+    <div class="data-content">
+        <div class="data-container history-content">
+            <div ng-cloak>
+                <md-content>
+                    <md-tabs md-selected="selectedIndex" md-border-bottom md-autoselect md-dynamic-height>
+                        <md-tab ng-repeat="range in availableDates | orderObjectBy:'year':true" label="{{range.year}}" ng-class="{'last-year':$last}">
+                            <md-list ng-cloak>
+                                <md-list-item id="{{'advice-group-' + range.year + '-' + month.id}}" ng-repeat="month in range.months | orderObjectBy:'id':true" ng-class="{'last-month':$last}" ng-click="getHistoryData(month.id, range.year)">
+                                    <p class="title">{{::LANG.MOIS[month.id]}}</p>
+
+                                    <p ng-if="month.weeks == 'no data'">Pas de données</p>
+
+                                    <md-card ng-if="month.weeks != 'no data'" ng-repeat="week in month.weeks" ng-click="getHistoryData(month.id, range.year)">
+                                        <md-card-title>
+                                            <md-card-title-text>
+                                                <span class="md-subhead discipline">{{::LANG[week.discipline]}}</span>
+                                                <span class="md-headline">{{::week.title}}</span>
+                                                <span class="md-subhead date">{{::LANG.WEEK_OF}} {{::extractDay(week.dateRange.start, 'day')}} {{::LANG.TO}} {{::extractDay(week.dateRange.end, 'day')}}</span>
+                                            </md-card-title-text>
+                                            <md-card-title-media>
+                                                <grade size="small" discipline="{{::week.discipline}}"></grade>
+                                            </md-card-title-media>
+                                        </md-card-title>
+                                        <md-card-actions layout="row" layout-align="end center">
+                                            <md-button ng-click="firePopup(week.code, true, 120)" class="more-button">EN SAVOIR +</md-button>
+                                        </md-card-actions>
+                                    </md-card>
+
+                                    <md-divider></md-divider>
+                                </md-list-item>
+                            </md-list>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>
+            </div>
+        </div>
+    </div>
+</div>

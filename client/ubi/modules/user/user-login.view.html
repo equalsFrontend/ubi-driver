@@ -1,0 +1,53 @@
+<div class="login">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="login-container">
+                    <div class="logo">&nbsp;</div>
+                    <form ng-submit="loginSubmitHandler()" method="post">
+
+                        <div layout-gt-sm="row">
+                            <div class="login-failed failed-creds">{{::LANG.LOGIN_FAILED}}</div>
+                            <div class="login-failed failed-service">{{::LANG.LOGIN_FAILED_SERVICE}}</div>
+                        </div>
+
+                        <div layout-gt-sm="row">
+                            <md-input-container flex id="username" md-theme-watch="true">
+                                <md-icon md-svg-src="images/network60.svg"></md-icon>
+                                <label>{{::LANG.USER_NAME}}</label>
+                                <input type="text" ng-model="username"/>
+                            </md-input-container>
+                        </div>
+
+                        <div layout-gt-sm="row">
+                            <md-input-container flex id="password" md-theme-watch="true">
+                                <md-icon md-svg-src="images/locked59.svg"></md-icon>
+                                <label>{{::LANG.PASSWORD}}</label>
+                                <input type="password" ng-model="password"/>
+                            </md-input-container>
+                        </div>
+
+                        <!--<a ui-sref="user.forgot" class="forgot">{{::LANG.FORGOT_PASSWORD}}</a>-->
+
+                        <a href="{{PATHS.MICROSITE}}changer-mot-de-passe" target="_blank" class="forgot">{{::LANG.FORGOT_PASSWORD}}</a>
+
+                        <div class="memory">
+                            <input type="checkbox" name="user_memory" id="user_memory" ng-model="remember">
+                            <label for="user_memory">{{::LANG.USER_MEMORY}}</label>
+                        </div>
+
+                        <input type="submit" name="submit" value="{{::LANG.CONNECT}}">
+
+                        <!--<label class="inscription">{{::LANG.NOT_REGISTERED}} <a href="signin.php">{{::LANG.REGISTRATION}}</a></label>-->
+                        <div class="langue-container">
+                            <ul>
+                                <!--<li><a ng-click="selectLangHandler(LANG.fr)">FR</a></li>-->
+                                <!--<li><a ng-click="selectLangHandler(LANG.en)">EN</a></li>-->
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

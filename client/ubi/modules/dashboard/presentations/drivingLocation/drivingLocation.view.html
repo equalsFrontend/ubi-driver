@@ -1,0 +1,88 @@
+<div class="row placeholders hidden-xs">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-content">
+        <span class="notation-logo"><img class="img-responsive" src="images/rurale.png"/></span>
+        <h4 class="title">{{::LANG.MY_DATA}}</h4>
+        <span class="clearfix"></span>
+    </div>
+</div>
+
+<div class="row data-zone data-content">
+    <div class="zone-container data-container clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header-content hidden-sm hidden-lg hidden-md">
+            <h4>{{::LANG.MY_DATA}}</h4>
+            <span class="clearfix"></span>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xs-12 chart-section">
+            <h4 class="col-md-offset-1">{{::LANG.DISTRIBUTION_DRIVING_ZONE}}</h4>
+            <div class="row">
+                <div class="col-md-offset-1 granularity">
+                    <div class="btn-group day">
+                        <button type="button" class="btn btn-default" dropdown="gran-dropdown,active" >{{LANG[drivingLocationDataGranularity]}}</button>
+                        <button type="button" class="btn btn-default dropdown-toggle" dropdown="gran-dropdown,active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" id="gran-dropdown">
+                            <li><a ng-click="getDrivingLocationData('DAY')">{{::LANG.DAY}}</a></li>
+                            <li><a ng-click="getDrivingLocationData('MONTH')">{{::LANG.MONTH}}</a></li>
+                            <li><a ng-click="getDrivingLocationData('YEAR')">{{::LANG.YEAR}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-offset-1 col-md-10 graphique graphique-round" id="graph_driving">
+                    <highchart id="chart1" config="drivingLocationChartConfig"></highchart>
+                </div>
+                <div class="row" style="display: none !important;">
+                    <div class="note a" id="zone_note">A</div>
+                    <p class="col-sm-12">{{::LANG.CALCULATION_SELECTED}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xs-12">
+            <h4 class="col-sm-offset-1">{{::LANG.AVERAGE_DRIVING_ZONE}}</h4>
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-10 graphique" id="graph_driving_average">
+                    <highchart id="chart1" config="drivingLocationAverage1Config"></highchart>
+                </div>
+            </div>
+            <h4 class="col-sm-offset-1">{{::LANG.AVERAGE_DRIVING_ZONE2}}</h4>
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-10 graphique" id="graph_driving_average2">
+                    <highchart id="chart1" config="drivingLocationAverage2Config"></highchart>
+                </div>
+            </div>
+            <!--
+            <div class="row">
+                <div class="commentaire col-sm-offset-1 col-sm-5"><div class="cadre">COMMENTAIRE</div></div>
+                <div class="conseil col-sm-5"><div class="cadre">CONSEIL</div></div>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+
+<div class="row last-row">
+    <span class="clearfix">
+        <div class="previous hidden-xs">
+            <a ui-sref="dashboard.co2" ng-click="scrollTo();">
+                <span class="text">{{::LANG.PREVIOUS}}</span>
+                <span class="name-page">{{::LANG.MENU_CO2}}</span>
+                <span class="arrow-prev"><img src="images/arrow-prev.png"/></span>
+            </a>
+        </div>
+        <div class="previous-light hidden-sm hidden-md hidden-lg">
+            <a ui-sref="dashboard.co2" ng-click="scrollTo();">
+                <span class="arrow-prev"><img src="images/arrow-prev.png"/></span>
+            </a>
+        </div>
+        <div class="next">
+            <a ui-sref="dashboard.info" ng-click="scrollTo();">
+                <span class="text">{{::LANG.NEXT}}</span>
+                <span class="name-page">{{::LANG.MENU_INFO}}</span>
+                <span class="arrow-next"><img src="images/arrow-next.png"/></span>
+            </a>
+        </div>
+    </span>
+</div>

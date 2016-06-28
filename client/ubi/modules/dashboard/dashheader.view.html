@@ -1,0 +1,23 @@
+<nav class="navbar navbar-inverse" scroll="134"> <!--force-fixed-position-->
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle hidden-lg collapsed" ng-click="menuToggleHandler()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <h1 class="hidden-xs">{{::LANG.DASHBOARD}} <span class="navbar-arrow">&gt;</span> <span class="navbar-section">{{LANG['MENU_' + $state.current.name.replace('dashboard.', '').toUpperCase()]}}</span></h1>
+
+        <h2>{{LANG['MENU_' + $state.current.name.replace('dashboard.', '').toUpperCase()]}}</h2>
+
+        <div class="logo-car hidden-md hidden-sm hidden-lg" ng-if="$state.current.name.indexOf('profile') < 0 && $state.current.name.indexOf('info') < 0">
+            <img class="img-responsive" src="images/car.png"/>
+            <select id="car-selectbox" class="hidden">
+                <option ng-repeat="sp in machines" ng-if="sp.type == 'SMARTPHONE'">{{::sp.title}}</option>
+                <option ng-repeat="sp in machines" ng-if="sp.type == 'VEHICLE' && debug == true">{{::sp.title}}</option>
+            </select>
+        </div>
+    </div>
+</nav>
